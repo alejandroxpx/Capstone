@@ -1,0 +1,15 @@
+Idea for capstone project
+
+Idea #1
+Rocket hub. This would have multiple apis to space related data and display it on the page.
+This would display the position of starlink satilites around the world. 
+This would crete a calendar for launch dates.
+the theme around each page would be space.
+
+Idea #2
+Cat hub for Dallas. Locate stary cat colonies and note the need for resources such as spay/neuter, 
+food, and water.
+This would utilize APIS for cat location if available. 
+
+Idea #3 
+Make a youtube/tiktok. This idea may be too similar to project 4.
