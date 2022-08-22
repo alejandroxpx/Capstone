@@ -13,3 +13,15 @@ This would utilize APIS for cat location if available.
 
 Idea #3 
 Make a youtube/tiktok. This idea may be too similar to project 4.
+
+
+Final Idea: 
+Pet adoption idea
+API: https://www.adoptapet.com/public/apis/pet_list.html#appendix_b
+Will display a globe sphere of earth with hot spots of animal adoption need
+user will can click on a hotspot and zoom into the most needy adoptions
+user can spin around the globe to other spots
+user can create an account and sign up for adoption
+data for the specific location is gathered through linked API 
+Calls to this api will display information about the animals and user can filter through them
+background will have a space theme....this can be change to other API tracking need 
