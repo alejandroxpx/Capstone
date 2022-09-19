@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'three',
     'capstone_application',
     'django.contrib.admin',
     'django.contrib.auth',
