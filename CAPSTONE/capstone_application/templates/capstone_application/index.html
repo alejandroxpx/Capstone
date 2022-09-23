@@ -5,8 +5,22 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
+    <div class="header">        
+        <a class="header-button" href="{% url 'login' %}">Login</a>
+        <a class="header-button" href="{% url 'register' %}">Register</a>
+        <a class="header-button" href="{% url 'logout' %}">Sign out</a>
+        <a class="header-button" href="{% url 'index' %}">Home</a>
+    </div>
+
+    
     <h1 class="title">Animal Tracking</h1>
-    <div class="tabs">tab division</div>
+
+    <div class="tabs">
+        <button class="tabs-button">Home</button>
+        <button class="tabs-button">Lost</button>
+        <button class="tabs-button">Need a home</button>
+        <button class="tabs-button">Stories</button>
+    </div>
     <div class="cover">cover division</div>
     <div class="bottom">bottom division</div>
 
