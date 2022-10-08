@@ -19,7 +19,7 @@
     width: 90%;
     margin-left: 5%;
     padding:5px;
-    margin-block: 2%;
+    /* margin-block: 2%; */
     background-color: black;
     border-radius: 10.25px;
 }
@@ -63,7 +63,7 @@ a.header-button{
     border: solid black;
     border-radius: 3.14px;
     padding: 5%;
-    text-align: center;
+    text-align: left;
 
 }
 .login-box{

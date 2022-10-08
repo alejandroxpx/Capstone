@@ -1,4 +1,8 @@
 {% extends "capstone_application/layout.html" %}
 {%block body%}
+{% if message %}
+    <div>{{message}}</div>
+{% endif %}
+
 <div class="cover">cover division</div>
 {% endblock %}

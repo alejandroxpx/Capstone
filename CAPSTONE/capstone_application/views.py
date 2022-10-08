@@ -1,10 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse 
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 
 # Create your views here.
 
 # introduction to page
 def index(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
     # Optional: Display globe of world as a heat map of lost pets/ homeless pets
 
     # display most recent post in cover page with sliding affect 
@@ -26,14 +30,22 @@ def lost_pets(request):
     return HttpResponse("Lost_pets Page")   
 
 def login(request):
-    # Get username
+    if request.method == "POST":
+        # Get username
+        username = request.POST["username"]
+        # Get password
+        password = request.POST["password"]
 
-    # Get password
-
-    # if found in database, login and return home page
-
-    # else, return error and reload login page
-
+        # if found in database, login and return home page
+        user = authenticate(request, username=username,password=password)
+        if user:
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+        # else, return error and reload login page
+        else:
+            return render(request, "capstone_application/login.html",{
+                "message":"Invalid credentials"
+            })
     return render(request, "capstone_application/login.html")
 
 def logout(request):
