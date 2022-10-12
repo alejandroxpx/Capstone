@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from .models import * 
 
 # Create your views here.
 
@@ -29,18 +30,18 @@ def lost_pets(request):
 
     return HttpResponse("Lost_pets Page")   
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         # Get username
         username = request.POST["username"]
         # Get password
         password = request.POST["password"]
-
+        user = User.objects.get(username=username, password=password)
         # if found in database, login and return home page
-        user = authenticate(request, username=username,password=password)
+        # user = authenticate(request, username=username,password=password)
         if user:
-            login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            # login(request, user)
+            return HttpResponse("worked")
         # else, return error and reload login page
         else:
             return render(request, "capstone_application/login.html",{

@@ -20,6 +20,6 @@ class Pet(models.Model):
     location = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"Name: {self. name} breed: {self.breed} age: {self.age} size: {self.size} image: {self.image} location: {self.location}"
+        return f"Name: {self.name} breed: {self.breed} age: {self.age} size: {self.size} image: {self.image} location: {self.location}"
     
 

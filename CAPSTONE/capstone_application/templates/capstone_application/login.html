@@ -1,14 +1,17 @@
 {% extends "capstone_application/layout.html" %}
 
 {% block body %}
-
+{% if message %}
+    <div>{{message}}</div>
+{% endif %}
 <div class="login-box">
     <h1>Login</h1>
 
-    <form action="">
-        Username: <input type="username">
-        Password: <input type="password">
-        <button> submit</button>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input type="username", name="username", placeholder="username">
+        <input type="password", name="password", placeholder="password"><br>
+        <input type="submit", value="Submit">
     </form>
 </div>
 {% endblock%}
