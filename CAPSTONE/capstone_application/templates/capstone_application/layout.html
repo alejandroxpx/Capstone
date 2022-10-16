@@ -3,25 +3,27 @@
 <head>
     <title>Capstone</title>
     <link rel="stylesheet" href="static/style.css">
+    <script src="static/index.js"></script>
 </head>
 <body>
     <div class="header">        
-        <a class="header-button" href="{% url 'login' %}">Login</a>
-        <a class="header-button" href="{% url 'register' %}">Register</a>
-        <a class="header-button" href="{% url 'logout' %}">Sign out</a>
-        <a class="header-button" href="{% url 'index' %}">Home</a>
+        <a class="header-button" id="Login" href="{% url 'login' %}">Login</a>
+        <a class="header-button" id="Register" href="{% url 'register' %}">Register</a>
+        <a class="header-button" id="Logout" href="{% url 'logout' %}">Logout</a>
+        <a class="header-button" id="Home" href="{% url 'home' %}">Home</a>
     </div>
 
     
     <h1 class="title">Animal Tracking</h1>
 
     <div class="tabs">
-        <button class="tabs-button">Home</button>
-        <button class="tabs-button">Lost</button>
-        <button class="tabs-button">Homeless</button>
-        <button class="tabs-button">Stories</button>
+        <button class="tabs-button" id="Home">Home</button>
+        <button class="tabs-button" id="Lost">Lost</button>
+        <button class="tabs-button" id="Homeless">Homeless</button>
+        <button class="tabs-button" id="Stories">Stories</button>
     </div>
     {% block body %}
+
     {% endblock %}
 
     <div class="bottom">

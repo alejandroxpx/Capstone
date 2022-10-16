@@ -36,14 +36,16 @@ def login_view(request):
         username = request.POST["username"]
         # Get password
         password = request.POST["password"]
-        user = User.objects.get(username=username, password=password)
+        
         # if found in database, login and return home page
-        # user = authenticate(request, username=username,password=password)
-        if user:
+        try:
+            (User.objects.get(username=username, password=password))
             # login(request, user)
-            return HttpResponse("worked")
-        # else, return error and reload login page
-        else:
+            return render(request,"capstone_application/home.html",{
+                "message":"Hello, User"
+            })
+        # return error and reload login page
+        except:
             return render(request, "capstone_application/login.html",{
                 "message":"Invalid credentials"
             })
@@ -64,4 +66,9 @@ def register(request):
     # If not return register page again
     
     return render(request, "capstone_application/register.html")
+ 
+def home(request):
+    return render(request, "capstone_application/home.html",{
+        "message":"Hello, (% User %)"
+    })
  
