@@ -17,32 +17,41 @@ document.addEventListener('DOMContentLoaded',function() {
 // navigate through home page
 function Home(){
     console.log("made it to the Home")
-    return false
+    
 }
 // navigate through lost page
 function Lost(){
+    // Create form to allow for people to register animals as lost
+    // Pull API for lost animals in Dallas
     console.log("made it to the Lost tab")
 }
 // navigate through homeless page
 function Homeless(){
+    // Allow people to post animals seen wondering around
+    // Pull API for Animals needing a home
     console.log("made it to the Homeless tab")
 }
 // navigate through stories page
 function Stories(){
+    // Allow people to post animals currently being fostered/recovery stories
+    // Pull API for animals beings fostered
     console.log("made it to the Stories tab")  
 }
 // Login
 function Login(){
+    // allow people to fill out form to login
     console.log("made it to the Login page")
-    return false
+    
 }
 // Register
 function Register(){
+    // allow people to fill out form to register
     console.log("made it to the Register page")
-    return false
+    
 }
 // Sign out
 function Logout(){
+    // allow people to sign out from website
     console.log("made it to the Sign out page")
-    return false
+    
 }
