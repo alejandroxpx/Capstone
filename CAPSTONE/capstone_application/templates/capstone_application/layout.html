@@ -17,13 +17,13 @@
     <h1 class="title">Animal Tracking</h1>
 
     <div class="tabs">
-        <button class="tabs-button" id="Home">Home</button>
-        <button class="tabs-button" id="Lost">Lost</button>
-        <button class="tabs-button" id="Homeless">Homeless</button>
-        <button class="tabs-button" id="Stories">Stories</button>
+        <a href="{% url 'home' %}"><button type="button" class="tabs-button" id="Home">Home</button></a> 
+        <a href="{% url 'lost' %}"><button class="tabs-button" id="Lost">Lost</button></a>
+        <a href="{% url 'homeless' %}"><button class="tabs-button" id="Homeless">Homeless</button></a>
+        <a href="{% url 'stories' %}"><button class="tabs-button" id="Stories">Stories</button></a>
     </div>
     {% block body %}
-
+    
     {% endblock %}
 
     <div class="bottom">

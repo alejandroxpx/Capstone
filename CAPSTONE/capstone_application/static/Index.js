@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded',function() {
 // navigate through home page
 function Home(){
     console.log("made it to the Home")
-    
 }
 // navigate through lost page
 function Lost(){
@@ -53,5 +52,4 @@ function Register(){
 function Logout(){
     // allow people to sign out from website
     console.log("made it to the Sign out page")
-    
 }

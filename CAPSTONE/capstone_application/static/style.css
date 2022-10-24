@@ -15,11 +15,9 @@
 }   
 .cover{
     border: 2px solid black;
-    line-height: 600px;
+    height: 300px;
     width: 90%;
     margin-left: 5%;
-    padding:5px;
-    /* margin-block: 2%; */
     background-color: black;
     border-radius: 10.25px;
 }
@@ -73,4 +71,14 @@ a.header-button{
     padding: 5%;
     text-align: center;
 
+}
+.lost-form{
+    position: relative;
+    text-align: center;
+    border: 2px solid black;
+    width: 80%;
+    margin-left: 10%;
+    padding:5px; 
+    margin-top: 2%;
+    margin-bottom: 5%;
 }

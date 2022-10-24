@@ -16,20 +16,6 @@ def index(request):
 
     return render(request, "capstone_application/index.html")
 
-def lost_pets(request):
-    # Get pet information
-
-    # If already in database return error
-
-    # else submit pet information into database
-
-    # If lost display lost page
-
-    # If homeless display homeless page
-
-
-    return HttpResponse("Lost_pets Page")   
-
 def login_view(request):
     if request.method == "POST":
         # Get username
@@ -68,7 +54,30 @@ def register(request):
     return render(request, "capstone_application/register.html")
  
 def home(request):
-    return render(request, "capstone_application/home.html",{
-        "message":"Hello, (% User %)"
-    })
+    return render(request, "capstone_application/home.html")
  
+def homeless(request):
+    return render(request, "capstone_application/homeless.html")
+
+def stories(request):
+    return render(request, "capstone_application/stories.html")
+
+def lost(request):
+    if request.method == "POST":
+        # Get pet information
+        name = request.POST["name"]
+        location = request.POST["location"]
+        age = request.POST["age"]
+        size = request.POST["size"]
+        image = request.POST["image"]
+        breed = request.POST["breed"]
+
+    # If already in database return error
+
+    # else submit pet information into database
+
+    # If lost display lost page
+
+    # If homeless display homeless page
+
+    return render(request, "capstone_application/lost.html")
