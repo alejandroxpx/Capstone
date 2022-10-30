@@ -1,6 +1,8 @@
 from django.urls import path
 from django.conf import settings
-from django.conf.urls.static import static
+# from django.views.generic import RedirectView
+# from django.conf.urls import url
+# from django.conf.urls.static import static
 from . import views 
 
 urlpatterns = [
@@ -13,4 +15,5 @@ urlpatterns = [
     path("lost",views.lost, name="lost"),
     path("homeless",views.homeless, name="homeless"),
     path("stories",views.stories, name="stories"),
+    # url(r'^favicon\.ico$',RedirectView.as_view(url="/static/images/favicon.ico")),
 ]

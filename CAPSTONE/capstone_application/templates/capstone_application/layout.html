@@ -3,7 +3,7 @@
 <head>
     <title>Capstone</title>
     <link rel="stylesheet" href="static/style.css">
-    <script src="static/index.js"></script>
+    <script src="static/index.js">console.log("made it here")</script>
 </head>
 <body>
     <div class="header">        
@@ -26,32 +26,75 @@
     {% block body %}
     
     {% endblock %}
+        <div id = "canvas">
+            <script src="https://threejs.org/build/three.js">console.log("made it here")</script>
+            <!-- <script src="../capstone_application/alex_three.js"></script> -->
+            <script type="module">
+                import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
+            import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
+            console.log(THREE);
+            
+            
 
-        <script src="https://threejs.org/build/three.js"></script>
-            <script>
                 // Our Javascript will go here.
+
                 const scene = new THREE.Scene();
                 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     
                 const renderer = new THREE.WebGLRenderer();
                 renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setPixelRatio(window.devicePixelRatio);
+
+                renderer.autoClear = false;
+                renderer.setClearColor(0x00000, 0.0);
                 document.body.appendChild( renderer.domElement );
-    
-                const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-                const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-                const cube = new THREE.Mesh( geometry, material );
-                scene.add( cube );
-    
-                camera.position.z = 5;
+
+                //Rendering a sphere
+                const geometry = new THREE.SphereGeometry(15,32,16);
+                const material = new THREE.MeshPhongMaterial({
+                    roughness:1,
+                    metalness:0,
+                    map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
+                    bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    bumpScale: 12,
+                });
+
+                const sphere = new THREE.Mesh(geometry, material);
+                scene.add(sphere);
+
+                const ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(ambientlight);
+
+                const pointerlight = new THREE.PointLight(0xffffff, 0.9);
+
+                pointerlight.position.set(10,10,30);
+                scene.add(pointerlight);
+
+                const cloudgeometry = new THREE.SphereGeometry(15.1,32,16);
+                
+                const cloudmaterial = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                    transparent: true,
+                });
+                const cloudmesh = new THREE.Mesh(cloudgeometry,cloudmaterial);
+                scene.add(cloudmesh);
+
+                camera.position.z = 30;
+            
+                const controls = new OrbitControls(camera,renderer.domElement)
                 function animate() {
-                    requestAnimationFrame( animate );
+                    requestAnimationFrame(animate);
                     renderer.render( scene, camera );
     
-                    cube.rotation.x += 0.01;
-                    cube.rotation.y += 0.01;    
+                    // sphere.rotation.x += 0.00;
+                    cloudmesh.rotation.y += 0.0012;
+                    sphere.rotation.y += 0.001;   
+                    controls.update();
                 }
                 animate();
             </script>
+        </div>
+        
         
     <div class="bottom">
         <a class="header-button" href="{% url 'login' %}">Login</a>
