@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded',function() {
     // Load Login page
-    document.querySelector('#Login').addEventListener('click', () => Login());
+    // document.querySelector('#Login').addEventListener('click', () => Login());
     // Load Register page
-    document.querySelector('#Register').addEventListener('click', () => Register());
+    // document.querySelector('#Register').addEventListener('click', () => Register());
     // Loaf sign out page
-    document.querySelector('#Logout').addEventListener('click', () => Logout());
+    // document.querySelector('#Logout').addEventListener('click', () => Logout());
     // Load Home page
-    document.querySelector('#Home').addEventListener('click', () => Home());
+    // document.querySelector('#Home').addEventListener('click', () => Home());
     // Load Lost page
-    document.querySelector('#Lost').addEventListener('click', () => Lost());
+    // document.querySelector('#Lost').addEventListener('click', () => Lost());
     // Load Homeless page
-    document.querySelector('#Homeless').addEventListener('click', () => Homeless());
+    // document.querySelector('#Homeless').addEventListener('click', () => Homeless());
     // Load Stories page
-    document.querySelector('#Stories').addEventListener('click', () => Stories());
+    // document.querySelector('#Stories').addEventListener('click', () => Stories());
 })
 // navigate through home page
 function Home(){

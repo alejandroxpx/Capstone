@@ -3,63 +3,157 @@
 <head>
     <title>Capstone</title>
     <link rel="stylesheet" href="static/style.css">
-    <script src="static/index.js">console.log("made it here")</script>
+    <script src="static/index.js"></script>
 </head>
 <body>
-    <div class="header">        
-        <a class="header-button" id="Login" href="{% url 'login' %}">Login</a>
-        <a class="header-button" id="Register" href="{% url 'register' %}">Register</a>
-        <a class="header-button" id="Logout" href="{% url 'logout' %}">Logout</a>
-        <a class="header-button" id="Home" href="{% url 'home' %}">Home</a>
-    </div>
 
-    
-    <h1 class="title">Animal Tracking</h1>
-
-    <div class="tabs">
-        <a href="{% url 'home' %}"><button type="button" class="tabs-button" id="Home">Home</button></a> 
-        <a href="{% url 'lost' %}"><button class="tabs-button" id="Lost">Lost</button></a>
-        <a href="{% url 'homeless' %}"><button class="tabs-button" id="Homeless">Homeless</button></a>
-        <a href="{% url 'stories' %}"><button class="tabs-button" id="Stories">Stories</button></a>
-    </div>
+    <h1 class="title">Solar System</h1>
 
     {% block body %}
     
     {% endblock %}
         <div id = "canvas">
-            <script src="https://threejs.org/build/three.js">console.log("made it here")</script>
-            <!-- <script src="../capstone_application/alex_three.js"></script> -->
+            <script src="https://threejs.org/build/three.js"></script>
             <script type="module">
                 import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
-            import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
-            console.log(THREE);
-            
-            
-
-                // Our Javascript will go here.
-
+                import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
+                console.log(THREE);
+// ***************************************************************************
+                // Creating the scene
+// ***************************************************************************
                 const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+                const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
     
                 const renderer = new THREE.WebGLRenderer();
-                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setSize( window.innerWidth, window.innerHeight);
                 renderer.setPixelRatio(window.devicePixelRatio);
 
                 renderer.autoClear = false;
                 renderer.setClearColor(0x00000, 0.0);
                 document.body.appendChild( renderer.domElement );
 
-                //Rendering a sphere
-                const geometry = new THREE.SphereGeometry(15,32,16);
+
+// ***************************************************************************
+                //Rendering Mercury
+// ***************************************************************************
+const mercury = new THREE.SphereGeometry(.5,32,16);
+                const mercury_material = new THREE.MeshPhongMaterial({
+                    roughness:1,
+                    metalness:0,
+                    map: THREE.ImageUtils.loadTexture('static/Mercury.jpg'),
+                    // bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    // bumpScale: .4,
+                });
+
+                const mercury_sphere = new THREE.Mesh(mercury, mercury_material);
+                scene.add(mercury_sphere);
+
+                const mercury_ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(mercury_ambientlight);
+
+                const mercury_pointerlight = new THREE.PointLight(0xffffff, 0.9);
+
+                mercury_pointerlight.position.set(10,10,30);
+                scene.add(mercury_pointerlight);
+
+                const mercury_cloudgeometry = new THREE.SphereGeometry(.51,32,16);
+                
+                const mercury_cloudmaterial = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                    transparent: true,
+                });
+                const mercury_cloudmesh = new THREE.Mesh(mercury_cloudgeometry,mercury_cloudmaterial);
+                scene.add(mercury_cloudmesh);
+
+                const mercury_group = new THREE.Group();
+                mercury_group.add(mercury_cloudmesh);
+                mercury_group.add(mercury_sphere);
+                mercury_group.add(mercury_ambientlight);
+                mercury_group.add(mercury_pointerlight);
+                scene.add(mercury_group);
+                mercury_group.position.set(27,0,0)
+
+                // Mercury Axis for rotation around sun
+                const mercury_plane = new THREE.CircleGeometry(25,1)
+                const mercury_plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
+                const mercury_circle = new THREE.Mesh(mercury_plane,mercury_plane_color);
+                // earth_circle.attach(sphere)
+                scene.add(mercury_circle);
+
+                const mercury_group_rotation = new THREE.Group();
+                mercury_group_rotation.add(mercury_group);
+                mercury_group_rotation.add(mercury_circle);
+
+                scene.add(mercury_group_rotation);
+// ***************************************************************************
+                //Rendering Venus
+// ***************************************************************************
+
+// ***************************************************************************
+                //Rendering Mars
+// ***************************************************************************
+const mars = new THREE.SphereGeometry(2,32,16);
+                const mars_material = new THREE.MeshPhongMaterial({
+                    roughness:1,
+                    metalness:0,
+                    map: THREE.ImageUtils.loadTexture('static/mars.jpg'),
+                    // bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    // bumpScale: .4,
+                });
+
+                const mars_sphere = new THREE.Mesh(mars, mars_material);
+                scene.add(mars_sphere);
+
+                const mars_ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(mars_ambientlight);
+
+                const mars_pointerlight = new THREE.PointLight(0xffffff, 0.9);
+
+                mars_pointerlight.position.set(10,10,30);
+                scene.add(mars_pointerlight);
+
+                const mars_cloudgeometry = new THREE.SphereGeometry(2.01,32,16);
+                
+                const mars_cloudmaterial = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                    transparent: true,
+                });
+                const mars_cloudmesh = new THREE.Mesh(mars_cloudgeometry,mars_cloudmaterial);
+                scene.add(mars_cloudmesh);
+
+                const mars_group = new THREE.Group();
+                mars_group.add(mars_cloudmesh);
+                mars_group.add(mars_sphere);
+                mars_group.add(mars_ambientlight);
+                mars_group.add(mars_pointerlight);
+                scene.add(mars_group);
+                mars_group.position.set(62,0,0)
+
+                // Mar Axis for rotation around sun
+                const mars_plane = new THREE.CircleGeometry(60,1)
+                const mars_plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
+                const mars_circle = new THREE.Mesh(mars_plane,mars_plane_color);
+                // earth_circle.attach(sphere)
+                scene.add(mars_circle);
+
+                const mars_group_rotation = new THREE.Group();
+                mars_group_rotation.add(mars_group);
+                mars_group_rotation.add(mars_circle);
+
+                scene.add(mars_group_rotation);
+// ***************************************************************************
+                //Rendering earth
+// ***************************************************************************
+const earth = new THREE.SphereGeometry(3,32,16);
                 const material = new THREE.MeshPhongMaterial({
                     roughness:1,
                     metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
                     bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
-                    bumpScale: 12,
+                    bumpScale: .4,
                 });
 
-                const sphere = new THREE.Mesh(geometry, material);
+                const sphere = new THREE.Mesh(earth, material);
                 scene.add(sphere);
 
                 const ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
@@ -70,7 +164,7 @@
                 pointerlight.position.set(10,10,30);
                 scene.add(pointerlight);
 
-                const cloudgeometry = new THREE.SphereGeometry(15.1,32,16);
+                const cloudgeometry = new THREE.SphereGeometry(3.1,32,16);
                 
                 const cloudmaterial = new THREE.MeshPhongMaterial({
                     map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
@@ -79,7 +173,75 @@
                 const cloudmesh = new THREE.Mesh(cloudgeometry,cloudmaterial);
                 scene.add(cloudmesh);
 
-                camera.position.z = 30;
+                const earth_group = new THREE.Group();
+                earth_group.add(cloudmesh);
+                earth_group.add(sphere);
+                earth_group.add(ambientlight);
+                earth_group.add(pointerlight);
+                scene.add(earth_group);
+                earth_group.position.set(105,0,0)
+
+                // Earth Axis for rotation around sun
+                const earth_plane = new THREE.CircleGeometry(100,1)
+                const plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
+                const earth_circle = new THREE.Mesh(earth_plane,plane_color);
+                // earth_circle.attach(sphere)
+                scene.add(earth_circle);
+
+                const earth_group_rotation = new THREE.Group();
+                earth_group_rotation.add(earth_group);
+                earth_group_rotation.add(earth_circle);
+
+                scene.add(earth_group_rotation);
+// ***************************************************************************
+                //Rendering Jupiter
+// ***************************************************************************
+
+// ***************************************************************************
+                //Rendering Saturn
+// ***************************************************************************
+
+// ***************************************************************************
+                //Rendering Uranus
+// ***************************************************************************
+
+// ***************************************************************************
+                //Rendering Neptune
+// ***************************************************************************
+// ***************************************************************************
+              //Rendering Sun
+// ***************************************************************************
+const sun = new THREE.SphereGeometry(20,32,16);
+                const sun_material = new THREE.MeshPhongMaterial({
+                    roughness:1,
+                    metalness:0,
+                    map: THREE.ImageUtils.loadTexture("static/sun8k.jpg"),
+                    // bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    // bumpScale: 12,
+                });
+
+                const sun_sphere = new THREE.Mesh(sun, sun_material);
+                // sun_sphere.position.set(100,100,0);
+                scene.add(sun_sphere);
+
+                const sun_light = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(ambientlight);
+
+                const sun_pointerlight = new THREE.PointLight(0xffffff, 0.9);
+
+                sun_pointerlight.position.set(10,10,30);
+                scene.add(sun_pointerlight);
+
+                //Sun Axis for rotation around sun
+                const sun_plane = new THREE.CircleGeometry(20,10)
+                const sun_plane_color = new THREE.MeshBasicMaterial({color: 'yellow', wireframe: true});
+                const sun_circle = new THREE.Mesh(sun_plane,sun_plane_color);
+                // earth_circle.attach(sphere)
+                scene.add(sun_circle);
+// ***************************************************************************
+                // Animate the Solar System
+// ***************************************************************************
+                camera.position.z = 50;
             
                 const controls = new OrbitControls(camera,renderer.domElement)
                 function animate() {
@@ -87,8 +249,12 @@
                     renderer.render( scene, camera );
     
                     // sphere.rotation.x += 0.00;
-                    cloudmesh.rotation.y += 0.0012;
-                    sphere.rotation.y += 0.001;   
+                    cloudmesh.rotation.z += 0.012;
+                    sphere.rotation.z += 0.01;   
+                    earth_group_rotation.rotation.z += 0.005;
+                    mercury_group_rotation.rotation.z += 0.005;
+                    sun_sphere.rotation.z += .001;
+                    sun_circle.rotation.z += .001;
                     controls.update();
                 }
                 animate();
