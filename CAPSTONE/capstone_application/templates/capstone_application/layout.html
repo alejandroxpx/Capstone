@@ -88,7 +88,55 @@ const mercury = new THREE.SphereGeometry(.5,32,16);
 // ***************************************************************************
                 //Rendering Venus
 // ***************************************************************************
+const venus = new THREE.SphereGeometry(3,32,16);
+                const venus_material = new THREE.MeshPhongMaterial({
+                    roughness:1,
+                    metalness:0,
+                    map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
+                    bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    bumpScale: .4,
+                });
 
+                const venus_sphere = new THREE.Mesh(venus, venus_material);
+                scene.add(venus_sphere);
+
+                const venus_ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(venus_ambientlight);
+
+                const venus_pointerlight = new THREE.PointLight(0xffffff, 0.9);
+
+                venus_pointerlight.position.set(10,10,30);
+                scene.add(venus_pointerlight);
+
+                const venus_cloudgeometry = new THREE.SphereGeometry(3.1,32,16);
+                
+                const venus_cloudmaterial = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                    transparent: true,
+                });
+                const venus_cloudmesh = new THREE.Mesh(venus_cloudgeometry,venus_cloudmaterial);
+                scene.add(venus_cloudmesh);
+
+                const venus_group = new THREE.Group();
+                venus_group.add(venus_cloudmesh);
+                venus_group.add(venus_sphere);
+                venus_group.add(venus_ambientlight);
+                venus_group.add(venus_pointerlight);
+                scene.add(venus_group);
+                venus_group.position.set(80,0,0)
+
+                // Earth Axis for rotation around sun
+                const venus_plane = new THREE.CircleGeometry(100,1)
+                const venus_plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
+                const venus_circle = new THREE.Mesh(venus_plane,venus_plane_color);
+                // earth_circle.attach(sphere)
+                scene.add(venus_circle);
+
+                const venus_group_rotation = new THREE.Group();
+                venus_group_rotation.add(venus_group);
+                venus_group_rotation.add(venus_circle);
+
+                scene.add(venus_group_rotation);
 // ***************************************************************************
                 //Rendering Mars
 // ***************************************************************************
@@ -196,7 +244,55 @@ const earth = new THREE.SphereGeometry(3,32,16);
 // ***************************************************************************
                 //Rendering Jupiter
 // ***************************************************************************
+const jupiter = new THREE.SphereGeometry(10,32,16);
+                const jupiter_material = new THREE.MeshPhongMaterial({
+                    roughness:1,
+                    metalness:0,
+                    map: THREE.ImageUtils.loadTexture('static/jupiter.jpg'),
+                    // bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    bumpScale: .4,
+                });
 
+                const jupiter_sphere = new THREE.Mesh(jupiter, jupiter_material);
+                scene.add(jupiter);
+
+                const jupiter_ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(jupiter_ambientlight);
+
+                const jupiter_pointerlight = new THREE.PointLight(0xffffff, 0.9);
+
+                jupiter_pointerlight.position.set(10,10,30);
+                scene.add(jupiter_pointerlight);
+
+                const jupiter_cloudgeometry = new THREE.SphereGeometry(10.1,32,16);
+                
+                const jupiter_cloudmaterial = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                    transparent: true,
+                });
+                const jupiter_cloudmesh = new THREE.Mesh(jupiter_cloudgeometry,jupiter_cloudmaterial);
+                scene.add(jupiter_cloudmesh);
+
+                const jupiter_group = new THREE.Group();
+                jupiter_group.add(jupiter_cloudmesh);
+                jupiter_group.add(jupiter_sphere);
+                jupiter_group.add(jupiter_ambientlight);
+                jupiter_group.add(jupiter_pointerlight);
+                scene.add(jupiter_group);
+                jupiter_group.position.set(205,0,0)
+
+                // Earth Axis for rotation around sun
+                const jupiter_plane = new THREE.CircleGeometry(200,1)
+                const jupiter_plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
+                const jupiter_circle = new THREE.Mesh(jupiter_plane,jupiter_plane_color);
+                // earth_circle.attach(sphere)
+                scene.add(jupiter_circle);
+
+                const jupiter_group_rotation = new THREE.Group();
+                jupiter_group_rotation.add(jupiter_group);
+                jupiter_group_rotation.add(jupiter_circle);
+
+                scene.add(jupiter_group_rotation);
 // ***************************************************************************
                 //Rendering Saturn
 // ***************************************************************************
@@ -241,7 +337,7 @@ const sun = new THREE.SphereGeometry(20,32,16);
 // ***************************************************************************
                 // Animate the Solar System
 // ***************************************************************************
-                camera.position.z = 50;
+                camera.position.z = 200;
             
                 const controls = new OrbitControls(camera,renderer.domElement)
                 function animate() {
@@ -251,8 +347,11 @@ const sun = new THREE.SphereGeometry(20,32,16);
                     // sphere.rotation.x += 0.00;
                     cloudmesh.rotation.z += 0.012;
                     sphere.rotation.z += 0.01;   
+                    mars_group_rotation.rotation.z += 0.002;
+                    venus_group_rotation.rotation.z += 0.004;
                     earth_group_rotation.rotation.z += 0.005;
-                    mercury_group_rotation.rotation.z += 0.005;
+                    mercury_group_rotation.rotation.z += 0.01;
+                    jupiter_group_rotation.rotation.z += 0.001;
                     sun_sphere.rotation.z += .001;
                     sun_circle.rotation.z += .001;
                     controls.update();
