@@ -4,7 +4,7 @@
 {% if message %}
     <div>{{message}}</div>
 {% endif %}
-<div class="login-box">
+<div id="login-box" class="login-box"> 
     <h1>Login</h1>
 
     <form action="{% url 'login' %}" method="post">

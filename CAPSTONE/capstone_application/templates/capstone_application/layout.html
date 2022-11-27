@@ -7,17 +7,18 @@
 </head>
 <body>
 
-    <h1 class="title">Solar System</h1>
+    <div id = header>
+        <h1 class="title">Solar System</h1>
+    </div>
 
     {% block body %}
     
     {% endblock %}
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
-            <script type="module">
+            <script id="canvas" type="module">
                 import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
                 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
-                console.log(THREE);
 // ***************************************************************************
                 // Creating the scene
 // ***************************************************************************
@@ -31,19 +32,16 @@
                 renderer.autoClear = false;
                 renderer.setClearColor(0x00000, 0.0);
                 document.body.appendChild( renderer.domElement );
-
-
 // ***************************************************************************
-                //Rendering Mercury
+                // Rendering Mercury
 // ***************************************************************************
 const mercury = new THREE.SphereGeometry(4.9,32,16);
                 const mercury_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/Mercury.jpg'),
                 });
 
                 const mercury_sphere = new THREE.Mesh(mercury, mercury_material);
+                mercury_sphere.rotateX(1.5);
                 scene.add(mercury_sphere);
 
                 const mercury_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -51,7 +49,6 @@ const mercury = new THREE.SphereGeometry(4.9,32,16);
                 scene.add(mercury_pointerlight);
 
                 const mercury_cloudgeometry = new THREE.SphereGeometry(.5,32,16);
-                
                 const mercury_cloudmaterial = new THREE.MeshPhongMaterial({
                     map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
                     transparent: true,
@@ -85,12 +82,11 @@ const mercury = new THREE.SphereGeometry(4.9,32,16);
 // ***************************************************************************
 const venus = new THREE.SphereGeometry(12.1,32,16);
                 const venus_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/venus.jpg'),
                 });
 
                 const venus_sphere = new THREE.Mesh(venus, venus_material);
+                venus_sphere.rotateX(1.5);
                 scene.add(venus_sphere);
 
                 const venus_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -134,14 +130,13 @@ const venus = new THREE.SphereGeometry(12.1,32,16);
 // ***************************************************************************
 const earth = new THREE.SphereGeometry(12.8,32,16);
                 const material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
                     bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
                     bumpScale: .4,
                 });
 
                 const sphere = new THREE.Mesh(earth, material);
+                sphere.rotateX(1.5);
                 scene.add(sphere);
 
                 const pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -149,7 +144,7 @@ const earth = new THREE.SphereGeometry(12.8,32,16);
                 pointerlight.position.set(10,10,30);
                 scene.add(pointerlight);
 
-                const cloudgeometry = new THREE.SphereGeometry(1.1,32,16);
+                const cloudgeometry = new THREE.SphereGeometry(13,32,16);
                 
                 const cloudmaterial = new THREE.MeshPhongMaterial({
                     map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
@@ -161,7 +156,6 @@ const earth = new THREE.SphereGeometry(12.8,32,16);
                 const earth_group = new THREE.Group();
                 earth_group.add(cloudmesh);
                 earth_group.add(sphere);
-                // earth_group.add(ambientlight);
                 earth_group.add(pointerlight);
                 scene.add(earth_group);
                 earth_group.position.set(2000,0,0)
@@ -170,7 +164,6 @@ const earth = new THREE.SphereGeometry(12.8,32,16);
                 const earth_plane = new THREE.CircleGeometry(10,1)
                 const plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
                 const earth_circle = new THREE.Mesh(earth_plane,plane_color);
-                // earth_circle.attach(sphere)
                 scene.add(earth_circle);
 
                 const earth_group_rotation = new THREE.Group();
@@ -183,12 +176,11 @@ const earth = new THREE.SphereGeometry(12.8,32,16);
 // ***************************************************************************
 const mars = new THREE.SphereGeometry(6.8,32,16);
                 const mars_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/mars.jpg'),
                 });
 
                 const mars_sphere = new THREE.Mesh(mars, mars_material);
+                mars_sphere.rotateX(1.5);
                 scene.add(mars_sphere);
 
                 const mars_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -233,14 +225,11 @@ const mars = new THREE.SphereGeometry(6.8,32,16);
 // ***************************************************************************
 const jupiter = new THREE.SphereGeometry(143,32,16);
                 const jupiter_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/jupiter.jpg'),
-                    // bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
-                    // bumpScale: .4,
                 });
 
                 const jupiter_sphere = new THREE.Mesh(jupiter, jupiter_material);
+                jupiter_sphere.rotateX(1.5);
                 scene.add(jupiter);
 
                 const jupiter_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -271,25 +260,23 @@ const jupiter = new THREE.SphereGeometry(143,32,16);
                     wireframe: true,
                 });
                 const jupiter_circle = new THREE.Mesh(jupiter_plane,jupiter_plane_color);
-                // earth_circle.attach(sphere)
                 scene.add(jupiter_circle);
 
                 const jupiter_group_rotation = new THREE.Group();
                 jupiter_group_rotation.add(jupiter_group);
                 jupiter_group_rotation.add(jupiter_circle);
-
                 scene.add(jupiter_group_rotation);
 // ***************************************************************************
                 //Rendering Saturn
 // ***************************************************************************
 const saturn = new THREE.SphereGeometry(120,32,16);
                 const saturn_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/saturn.jpg'),
                 });
 
                 const saturn_sphere = new THREE.Mesh(saturn, saturn_material);
+                saturn_sphere.rotateX(1.5);
+
                 scene.add(saturn);
 
                 const saturn_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -345,12 +332,11 @@ const saturn = new THREE.SphereGeometry(120,32,16);
 // ***************************************************************************
 const uranus = new THREE.SphereGeometry(51,32,16);
                 const uranus_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/saturn.jpg'),
                 });
 
                 const uranus_sphere = new THREE.Mesh(uranus, uranus_material);
+                uranus_sphere.rotateX(1.5);
                 scene.add(uranus);
 
                 const uranus_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -393,12 +379,11 @@ const uranus = new THREE.SphereGeometry(51,32,16);
 // ***************************************************************************
 const neptune = new THREE.SphereGeometry(49,32,16);
                 const neptune_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture('static/saturn.jpg'),
                 });
 
                 const neptune_sphere = new THREE.Mesh(neptune, neptune_material);
+                neptune_sphere.rotateX(1.5);
                 scene.add(neptune);
 
                 const neptune_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -432,7 +417,6 @@ const neptune = new THREE.SphereGeometry(49,32,16);
 
                 const neptune_group_rotation = new THREE.Group();
                 neptune_group_rotation.add(neptune_group);
-                // uranus_group_rotation.add(circle_rings);
                 neptune_group_rotation.add(neptune_circle);
 
                 scene.add(neptune_group_rotation);
@@ -441,12 +425,11 @@ const neptune = new THREE.SphereGeometry(49,32,16);
 // ***************************************************************************
 const sun = new THREE.SphereGeometry(1000,32,16);
                 const sun_material = new THREE.MeshPhongMaterial({
-                    // roughness:1,
-                    // metalness:0,
                     map: THREE.ImageUtils.loadTexture("static/sun8k.jpg"),
                 });
 
                 const sun_sphere = new THREE.Mesh(sun, sun_material);
+                sun_sphere.rotateX(1.5708)
                 scene.add(sun_sphere);
 
                 const sun_pointerlight = new THREE.PointLight({
@@ -466,33 +449,41 @@ const sun = new THREE.SphereGeometry(1000,32,16);
                 // Animate the Solar System
 // ***************************************************************************
                 camera.position.z = 20000;
-                // camera.position.rz = 20;
                 const amb_light = new THREE.AmbientLight(0xffffff, 1);
                 scene.add(amb_light);
                 const controls = new OrbitControls(camera,renderer.domElement)
                 function animate() {
                     requestAnimationFrame(animate);
                     renderer.render( scene, camera );
-    
-                    // sphere.rotation.x += 0.00;
+                    
+                    // Earth rotation
                     cloudmesh.rotation.z += 0.012;
-                    sphere.rotation.z += 0.01;   
+                    sphere.rotation.y += 0.01;   
+                    earth_group_rotation.rotation.z += 0.001;
+                    // Mars rotation
                     mars_group_rotation.rotation.z += 0.002;
+                    // Venus rotation
                     venus_group_rotation.rotation.z += 0.004;
-                    earth_group_rotation.rotation.z += 0.005;
+                    // Mercury rotation
                     mercury_group_rotation.rotation.z += 0.01;
+                    // Jupiter rotation
                     jupiter_group_rotation.rotation.z += 0.001;
+                    // Saturn rotation
                     saturn_group_rotation.rotation.z += 0.0004;
+                    // Uranus rotation
                     uranus_group_rotation.rotation.z += 0.0004;
+                    // Neptune rotation
                     neptune_group_rotation.rotation.z += 0.0004;
+                    // Sun rotation
                     circle_rings.rotation.z += 0.002;
-                    sun_sphere.rotation.z += .001;
+                    sun_sphere.rotation.y += .001;
                     sun_circle.rotation.z += .001;
+                    
                     controls.update();
                 }
                 animate();
             </script>
-        </div>
+        </div> <!-- end of div canvas -->
         
         
     <div class="bottom">
