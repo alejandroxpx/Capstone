@@ -28,7 +28,7 @@ def login_view(request):
             (User.objects.get(username=username, password=password))
             # login(request, user)
             return render(request,"capstone_application/home.html",{
-                "message":"Hello, User"
+                "message":"Hello, Alex!"
             })
         # return error and reload login page
         except:
