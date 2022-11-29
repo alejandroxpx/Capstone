@@ -2,13 +2,11 @@
 
 {% block body %}
 
-{% if message %}
-    <div>{{message}}</div>
-{% endif %}
-
 <div class="register-box">
     <h1>Register</h1>
-
+        {% if message %}
+        <div>{{message}}</div>
+        {% endif %}
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <input type="name", name="Name", placeholder="Name"><br><br>

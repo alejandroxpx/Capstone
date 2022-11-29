@@ -1,9 +1,13 @@
 {% extends "capstone_application/layout.html" %}
 {%block body%}
-{% if message %}
+<div id="logout">
+    {% if message %}
     <div>{{message}}</div>
-{% endif %}
-<h1>Index</h1>
+    {% endif %}
+    
+    <h1>Index</h1>
+</div>
+
 
 
 {% endblock %}

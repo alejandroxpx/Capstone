@@ -80,8 +80,16 @@ a.header-button{
     margin-top: 2%;
     margin-bottom: 5%;
 }
-#login-box, canvas, #header, #home, #tab-button, #message, #header-button, .header{
+#login-box, canvas, #header,#logout, #home, #tab-button, #message, #top, .header, .register-box{
     position:absolute;
+}
+#logout{
+    z-index: 10;
+    color: white;
+}
+.register-box{
+    z-index: 10;
+    color: white;
 }
 #login-box{
     z-index:10;
@@ -95,9 +103,14 @@ a.header-button{
     color: white;
     z-index: 10;
 }
-#header-button{
+#top{
     color: white;
+    /* font: bold; */
     z-index: 10;
+    width: 100%;
+    margin: 5%;
+    padding-left: 2%;
+    font-size: 30px;
 }
 #message{
     z-index: 10;
