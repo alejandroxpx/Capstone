@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-from .models import * 
+from . models import * 
 
 # Create your views here.
 
@@ -81,3 +81,31 @@ def lost(request):
     # If homeless display homeless page
 
     return render(request, "capstone_application/lost.html")
+
+def mercury(request):
+    # choose mercury camera
+    camera = 'mercury'
+    return render(request,'capstone_application/mercury.html',{
+        "camera" : camera,
+    })
+
+def venus(request):
+    return render(request,'capstone_application/venus.html')
+
+def earth(request):
+    return render(request,'capstone_application/earth.html')
+
+def mars(request):
+    return render(request,'capstone_application/mars.html')
+
+def jupiter(request):
+    return render(request,'capstone_application/jupiter.html')
+
+def saturn(request):
+    return render(request,'capstone_application/saturn.html')
+
+def uranus(request):
+    return render(request,'capstone_application/neptune.html')
+
+def neptune(request):
+    return render(request,'capstone_applicaiton/neptune.html')

@@ -11,14 +11,14 @@
         <!-- <a class="header-button" href="{% url 'login' %}">Login/logout</a>
         <a class="header-button" href="{% url 'register' %}">Register</a>
         <a class="header-button" href="{% url 'index' %}">Home</a> -->
-        <a href="">Mercury</a>
-        <a href="">Venus</a>
-        <a href="">Earth</a>
-        <a href="">Mars</a>
-        <a href="">Jupiter</a>
-        <a href="">Saturn</a>
-        <a href="">Uranus</a>
-        <a href="">Neptune</a>
+        <a href="{% url 'mercury' %}">Mercury</a>
+        <a href="{% url 'venus' %}">Venus</a>
+        <a href="{% url 'earth' %}">Earth</a>
+        <a href="{% url 'mars' %}">Mars</a>
+        <a href="{% url 'jupiter' %}">Jupiter</a>
+        <a href="{% url 'saturn' %}">Saturn</a>
+        <a href="{% url 'uranus' %}">Uranus</a>
+        <a href="{% url 'uranus' %}">Neptune</a>
 </div>
     {% block body %}
     
@@ -35,15 +35,15 @@
                 // Creating the scene
 // ***************************************************************************
                 const scene = new THREE.Scene();
+              
                 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 20000 );
-    
                 const renderer = new THREE.WebGLRenderer();
                 renderer.setSize( window.innerWidth, window.innerHeight);
                 renderer.setPixelRatio(window.devicePixelRatio);
 
                 renderer.autoClear = false;
                 renderer.setClearColor(0x00000, 0.0);
-                document.body.appendChild( renderer.domElement );
+                document.body.appendChild(renderer.domElement );
 // ***************************************************************************
                 // Rendering Mercury
 // ***************************************************************************
@@ -460,7 +460,13 @@ const sun = new THREE.SphereGeometry(1000,32,16);
 // ***************************************************************************
                 // Animate the Solar System
 // ***************************************************************************
-                camera.position.z = 20000;
+// Need to make the camera move with the planets depending on what link the user clicks or if it is the default camera.
+                // for(let i=1000; i < 20000; i++){
+                //     camera.position.z = i
+                //     console.log(i)
+                // }
+                // camera.position.z = 20000;
+                
                 const amb_light = new THREE.AmbientLight(0xffffff, 1);
                 scene.add(amb_light);
                 const controls = new OrbitControls(camera,renderer.domElement)
@@ -475,9 +481,14 @@ const sun = new THREE.SphereGeometry(1000,32,16);
                     // Mars rotation
                     mars_group_rotation.rotation.z += 0.002;
                     // Venus rotation
-                    venus_group_rotation.rotation.z += 0.004;
+                    venus_group_rotation.rotation.z += 0.001;
+                    let pos = venus_sphere.rotation.y += 0.01;
+                    let y = venus_sphere.rotation;
+                    console.log("venus",y.y)
+                    camera.position.z = y._y*1000;
                     // Mercury rotation
-                    mercury_group_rotation.rotation.z += 0.01;
+                    mercury_sphere.rotation.y += 0.01;
+                    mercury_group_rotation.rotation.z += 0.001;
                     // Jupiter rotation
                     jupiter_group_rotation.rotation.z += 0.001;
                     // Saturn rotation

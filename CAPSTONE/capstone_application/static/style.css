@@ -112,6 +112,9 @@ a.header-button{
     padding-left: 2%;
     font-size: 30px;
 }
+a {
+    color: white;
+}
 #message{
     z-index: 10;
     /* padding-left: 40%; */

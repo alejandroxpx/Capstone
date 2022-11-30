@@ -15,4 +15,12 @@ urlpatterns = [
     path("lost",views.lost, name="lost"),
     path("homeless",views.homeless, name="homeless"),
     path("stories",views.stories, name="stories"),
+    path("mercury",views.mercury, name="mercury"),
+    path("venus",views.venus, name="venus"),
+    path("earth",views.earth, name="earth"),
+    path("mars",views.mars, name="mars"),
+    path("jupiter",views.jupiter, name="jupiter"),
+    path("saturn",views.saturn, name="saturn"),
+    path("uranus",views.uranus, name="uranus"),
+    path("neptune",views.neptune, name="neptune"),
 ]
