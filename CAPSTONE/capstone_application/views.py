@@ -5,11 +5,10 @@ from django.urls import reverse
 from . models import * 
 
 # Create your views here.
-
 # introduction to page
 def index(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+    # if not request.user.is_authenticated:
+        # return HttpResponseRedirect(reverse("login"))
     # Optional: Display globe of world as a heat map of lost pets/ homeless pets
 
     # display most recent post in cover page with sliding affect 
@@ -52,35 +51,6 @@ def register(request):
     # If not return register page again
     
     return render(request, "capstone_application/register.html")
- 
-def home(request):
-    return render(request, "capstone_application/home.html")
- 
-def homeless(request):
-    return render(request, "capstone_application/homeless.html")
-
-def stories(request):
-    return render(request, "capstone_application/stories.html")
-
-def lost(request):
-    if request.method == "POST":
-        # Get pet information
-        name = request.POST["name"]
-        location = request.POST["location"]
-        age = request.POST["age"]
-        size = request.POST["size"]
-        image = request.POST["image"]
-        breed = request.POST["breed"]
-
-    # If already in database return error
-
-    # else submit pet information into database
-
-    # If lost display lost page
-
-    # If homeless display homeless page
-
-    return render(request, "capstone_application/lost.html")
 
 def mercury(request):
     # choose mercury camera
@@ -105,7 +75,7 @@ def saturn(request):
     return render(request,'capstone_application/saturn.html')
 
 def uranus(request):
-    return render(request,'capstone_application/neptune.html')
+    return render(request,'capstone_application/uranus.html')
 
 def neptune(request):
-    return render(request,'capstone_applicaiton/neptune.html')
+    return render(request,'capstone_application/neptune.html')

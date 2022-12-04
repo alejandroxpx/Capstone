@@ -34,7 +34,7 @@ canvas{
     border: 2px solid #ababab;
     display:inline-block;
     width: 100%;
-    background-color: rgb(213, 213, 213);
+    background-color: rgb(124, 124, 124);
 }
 .tabs-button{
     display:inline-flex;
@@ -56,7 +56,7 @@ a.header-button{
 }
 .register-box{
     margin: 10%;
-    border: solid white;
+    border: solid rgb(109, 109, 109);
     border-radius: 3.14px;
     padding: 5%;
     text-align: left;
@@ -64,7 +64,7 @@ a.header-button{
 }
 .login-box{
     margin: 10%;
-    border: solid white;
+    border: solid rgb(135, 135, 135);
     border-radius: 3.14px;
     padding: 5%;
     text-align: center;
@@ -73,7 +73,7 @@ a.header-button{
 .lost-form{
     position: relative;
     text-align: center;
-    border: 2px solid white;
+    border: 2px solid rgb(105, 105, 105);
     width: 80%;
     margin-left: 10%;
     padding:5px; 
@@ -89,22 +89,22 @@ a.header-button{
 }
 .register-box{
     z-index: 10;
-    color: white;
+    color: rgb(136, 136, 136);
 }
 #login-box{
     z-index:10;
-    color: white;
+    color: rgb(107, 107, 107);
 }
 #home{
     z-index:10;
     color: white;
 }
 .title{
-    color: white;
+    color: rgb(114, 114, 114);
     z-index: 10;
 }
 #top{
-    color: white;
+    color: rgb(0, 0, 0);
     /* font: bold; */
     z-index: 10;
     width: 100%;
@@ -113,7 +113,7 @@ a.header-button{
     font-size: 30px;
 }
 a {
-    color: white;
+    color: rgb(120, 120, 120);
 }
 #message{
     z-index: 10;

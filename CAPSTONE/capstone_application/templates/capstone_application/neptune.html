@@ -7,11 +7,122 @@
 <div id="login-box" class="login-box"> 
     <h1>Login</h1>
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <input type="username", name="username", placeholder="username">
-        <input type="password", name="password", placeholder="password"><br><br>
-        <input type="submit", value="Submit">
-    </form>
+
+    <div id = "canvas">
+        <script src="https://threejs.org/build/three.js"></script>
+        <script id="canvas" type="module">
+            import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
+            import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
+    // ***************************************************************************
+            // Creating the scene
+    // ***************************************************************************
+            const scene = new THREE.Scene();
+          
+            const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+    
+            renderer.autoClear = false;
+            renderer.setClearColor(0x00000, 0.0);
+            document.body.appendChild(renderer.domElement );
+    // ***************************************************************************
+            // Rendering Mercury
+    // ***************************************************************************
+    const neptune = new THREE.SphereGeometry(49,32,16);
+            const neptune_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture('static/saturn.jpg'),
+            });
+
+            const neptune_sphere = new THREE.Mesh(neptune, neptune_material);
+            neptune_sphere.rotateX(1.5);
+            scene.add(neptune);
+
+            const neptune_pointerlight = new THREE.PointLight(0xffffff, 0.0);
+            neptune_pointerlight.position.set(250,0,30);
+            scene.add(neptune_pointerlight);
+
+            const neptune_cloudgeometry = new THREE.SphereGeometry(5.1,32,16);
+            
+            const neptune_cloudmaterial = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                transparent: true,
+            });
+            const neptune_cloudmesh = new THREE.Mesh(neptune_cloudgeometry,neptune_cloudmaterial);
+            scene.add(neptune_cloudmesh);
+
+            const neptune_group = new THREE.Group();
+            neptune_group.add(neptune_cloudmesh);
+            neptune_group.add(neptune_sphere);
+            neptune_group.add(neptune_pointerlight);
+            scene.add(neptune_group);
+            neptune_group.position.set(-13000,0,0)
+
+            // uranus Axis for rotation around sun
+            const neptune_plane = new THREE.CircleGeometry(10,1)
+            const neptune_plane_color = new THREE.MeshBasicMaterial({
+                color: 'white', 
+                wireframe: true,
+            });
+            const neptune_circle = new THREE.Mesh(neptune_plane,neptune_plane_color);
+            scene.add(neptune_circle);
+
+            const neptune_group_rotation = new THREE.Group();
+            neptune_group_rotation.add(neptune_group);
+            neptune_group_rotation.add(neptune_circle);
+
+            scene.add(neptune_group_rotation);
+    
+    // ***************************************************************************
+          //Rendering Sun
+    // ***************************************************************************
+    const sun = new THREE.SphereGeometry(1000,32,16);
+        const sun_material = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture("static/sun8k.jpg"),
+        });
+
+        const sun_sphere = new THREE.Mesh(sun, sun_material);
+        sun_sphere.rotateX(1.5708)
+        scene.add(sun_sphere);
+
+        const sun_pointerlight = new THREE.PointLight({
+            color:'white'});
+        sun_pointerlight.position.set(50,0,0);
+        scene.add(sun_pointerlight);
+
+        //Sun Axis for rotation around sun
+        const sun_plane = new THREE.CircleGeometry(10,10)
+        const sun_plane_color = new THREE.MeshBasicMaterial({
+            color: 'yellow', 
+            wireframe: true
+        });
+        const sun_circle = new THREE.Mesh(sun_plane,sun_plane_color);
+        scene.add(sun_circle);
+    // ***************************************************************************
+            // Animate the Solar System
+    // ***************************************************************************
+    
+            
+            const amb_light = new THREE.AmbientLight(0xffffff, 1);
+            scene.add(amb_light);
+            const controls = new OrbitControls(camera,renderer.domElement)
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render( scene, camera );
+                camera.position.x = -14500;
+                camera.rotation.z += 0.0004;
+    
+                // Neptune rotation
+                neptune_group_rotation.rotation.z += 0.0004;
+
+    
+                sun_sphere.rotation.z -= .00001;
+                sun_circle.rotation.x += .001;
+                
+                controls.update();
+            }
+            animate();
+        </script>
+    </div> <!-- end of div canvas -->
 </div>
 {% endblock%}
