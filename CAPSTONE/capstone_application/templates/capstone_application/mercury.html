@@ -15,7 +15,7 @@
 // ***************************************************************************
         const scene = new THREE.Scene();
       
-        const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 20000 );
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -26,13 +26,13 @@
 // ***************************************************************************
         // Rendering Mercury
 // ***************************************************************************
-const mercury = new THREE.SphereGeometry(4.9,32,16);
+const mercury = new THREE.SphereGeometry(4.9,32,32);
         const mercury_material = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('static/Mercury.jpg'),
         });
 
         const mercury_sphere = new THREE.Mesh(mercury, mercury_material);
-        mercury_sphere.rotateX(1.5);
+        mercury_sphere.rotateY(1.5);
         scene.add(mercury_sphere);
 
         const mercury_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -51,7 +51,8 @@ const mercury = new THREE.SphereGeometry(4.9,32,16);
         mercury_group.add(mercury_cloudmesh);
         mercury_group.add(mercury_sphere);
         mercury_group.add(mercury_pointerlight);
-        // mercury_group.add(camera);
+        mercury_group.add(camera);
+        camera.position.set(16,0,0)
         scene.add(mercury_group);
         mercury_group.position.set(1400,0,0)
 
@@ -66,7 +67,12 @@ const mercury = new THREE.SphereGeometry(4.9,32,16);
 
         const mercury_group_rotation = new THREE.Group();
         mercury_group_rotation.add(mercury_group);
+        // mercury_group_rotation.add(camera);
         mercury_group_rotation.add(mercury_circle);
+
+        // const cam_group = new THREE.Group();
+        // cam_group.add(camera);
+        // cam_group.position.set(1450,0,0)
 
         scene.add(mercury_group_rotation);
 
@@ -106,14 +112,14 @@ const sun = new THREE.SphereGeometry(1000,32,16);
         function animate() {
             requestAnimationFrame(animate);
             renderer.render( scene, camera );
-            camera.position.x = 1450;
-            camera.rotation.y += 0.01;
-
-            mercury_sphere.rotation.z -= 0.001;
-            mercury_group_rotation.rotation.z += 0.00;
-
-            sun_sphere.rotation.z -= .00001;
-            sun_circle.rotation.x += .001;
+            
+            mercury_sphere.rotation.y += 0.001;
+            mercury_group_rotation.rotation.y += 0.001;
+            
+            // cam_group.rotation.z += 0.01;
+            
+            sun_sphere.rotation.z -= .0001;
+            // sun_circle.rotation.x += .00001;
             
             controls.update();
         }

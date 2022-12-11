@@ -4,7 +4,7 @@
 {% if message %}
     <div id="message"><br>{{message}}</div>
 {% endif %}
-<div id="login-box" class="login-box"> 
+
 
     <div id = "canvas">
         <script src="https://threejs.org/build/three.js"></script>
@@ -16,7 +16,7 @@
     // ***************************************************************************
             const scene = new THREE.Scene();
           
-            const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+            const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 20000 );
             const renderer = new THREE.WebGLRenderer();
             renderer.setSize( window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -24,57 +24,61 @@
             renderer.autoClear = false;
             renderer.setClearColor(0x00000, 0.0);
             document.body.appendChild(renderer.domElement );
-    // ***************************************************************************
-            // Rendering Mercury
-    // ***************************************************************************
-    const mercury = new THREE.SphereGeometry(4.9,32,16);
-            const mercury_material = new THREE.MeshPhongMaterial({
-                map: THREE.ImageUtils.loadTexture('static/Mercury.jpg'),
+// ***************************************************************************
+            //Rendering Venus
+// ***************************************************************************
+const venus = new THREE.SphereGeometry(12.1,32,32);
+            const venus_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture('static/venus.jpg'),
+                bumpMap: THREE.ImageUtils.loadTexture("static/venusbump.jpg"),
+                bumpScale: 3,
             });
-    
-            const mercury_sphere = new THREE.Mesh(mercury, mercury_material);
-            mercury_sphere.rotateX(1.5);
-            scene.add(mercury_sphere);
-    
-            const mercury_pointerlight = new THREE.PointLight(0xffffff, 0.0);
-            mercury_pointerlight.position.set(10,10,30);
-            scene.add(mercury_pointerlight);
-    
-            const mercury_cloudgeometry = new THREE.SphereGeometry(.5,32,16);
-            const mercury_cloudmaterial = new THREE.MeshPhongMaterial({
+
+            const venus_sphere = new THREE.Mesh(venus, venus_material);
+            venus_sphere.rotateX(1.5);
+            scene.add(venus_sphere);
+
+            const venus_pointerlight = new THREE.PointLight(0xffffff, 0.0);
+
+            venus_pointerlight.position.set(10,10,30);
+            scene.add(venus_pointerlight);
+
+            const venus_cloudgeometry = new THREE.SphereGeometry(.88,32,16);
+            
+            const venus_cloudmaterial = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
                 transparent: true,
             });
-            const mercury_cloudmesh = new THREE.Mesh(mercury_cloudgeometry,mercury_cloudmaterial);
-            scene.add(mercury_cloudmesh);
-    
-            const mercury_group = new THREE.Group();
-            mercury_group.add(mercury_cloudmesh);
-            mercury_group.add(mercury_sphere);
-            mercury_group.add(mercury_pointerlight);
-            // mercury_group.add(camera);
-            scene.add(mercury_group);
-            mercury_group.position.set(1400,0,0)
-    
-            // Mercury Axis for rotation around sun
-            const mercury_plane = new THREE.CircleGeometry(10,1)
-            const mercury_plane_color = new THREE.MeshBasicMaterial({
+            const venus_cloudmesh = new THREE.Mesh(venus_cloudgeometry,venus_cloudmaterial);
+            scene.add(venus_cloudmesh);
+
+            const venus_group = new THREE.Group();
+            venus_group.add(venus_cloudmesh);
+            venus_group.add(venus_sphere);
+            venus_group.add(venus_pointerlight);
+            venus_group.add(camera);
+            camera.position.set(40,0,0)
+            scene.add(venus_group);
+            venus_group.position.set(1700,0,0)
+
+            // Venus Axis for rotation around sun
+            const venus_plane = new THREE.CircleGeometry(10,1)
+            const venus_plane_color = new THREE.MeshBasicMaterial({
                 color: 'black', 
                 wireframe: true,
             });
-            const mercury_circle = new THREE.Mesh(mercury_plane,mercury_plane_color);
-            scene.add(mercury_circle);
-    
-            const mercury_group_rotation = new THREE.Group();
-            mercury_group_rotation.add(mercury_group);
-            mercury_group_rotation.add(mercury_circle);
-    
-            scene.add(mercury_group_rotation);
-    
+            const venus_circle = new THREE.Mesh(venus_plane,venus_plane_color);
+            scene.add(venus_circle);
+
+            const venus_group_rotation = new THREE.Group();
+            venus_group_rotation.add(venus_group);
+            venus_group_rotation.add(venus_circle);
+
+            scene.add(venus_group_rotation);
     // ***************************************************************************
           //Rendering Sun
     // ***************************************************************************
-    const sun = new THREE.SphereGeometry(1000,32,16);
+    const sun = new THREE.SphereGeometry(1000,32,32);
             const sun_material = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture("static/sun8k.jpg"),
             });
@@ -107,14 +111,12 @@
             function animate() {
                 requestAnimationFrame(animate);
                 renderer.render( scene, camera );
-                camera.position.x = 1450;
-                camera.rotation.y += 0.01;
     
-                mercury_sphere.rotation.z -= 0.001;
-                mercury_group_rotation.rotation.z += 0.00;
+                venus_sphere.rotation.z -= 0.001;
+                venus_group_rotation.rotation.z += 0.00;
     
-                sun_sphere.rotation.z -= .00001;
-                sun_circle.rotation.x += .001;
+                sun_sphere.rotation.z -= .0001;
+                // sun_circle.rotation.x += .001;
                 
                 controls.update();
             }

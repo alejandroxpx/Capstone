@@ -24,51 +24,53 @@
         renderer.setClearColor(0x00000, 0.0);
         document.body.appendChild(renderer.domElement );
 // ***************************************************************************
-        // Rendering Mercury
+            //Rendering Jupiter
 // ***************************************************************************
-const mercury = new THREE.SphereGeometry(4.9,32,16);
-        const mercury_material = new THREE.MeshPhongMaterial({
-            map: THREE.ImageUtils.loadTexture('static/Mercury.jpg'),
-        });
+const jupiter = new THREE.SphereGeometry(143,32,16);
+            const jupiter_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture('static/jupiter.jpg'),
+            });
 
-        const mercury_sphere = new THREE.Mesh(mercury, mercury_material);
-        mercury_sphere.rotateX(1.5);
-        scene.add(mercury_sphere);
+            const jupiter_sphere = new THREE.Mesh(jupiter, jupiter_material);
+            // jupiter_sphere.rotateX(1.5);
+            scene.add(jupiter);
 
-        const mercury_pointerlight = new THREE.PointLight(0xffffff, 0.0);
-        mercury_pointerlight.position.set(10,10,30);
-        scene.add(mercury_pointerlight);
+            const jupiter_pointerlight = new THREE.PointLight(0xffffff, 0.0);
 
-        const mercury_cloudgeometry = new THREE.SphereGeometry(.5,32,16);
-        const mercury_cloudmaterial = new THREE.MeshPhongMaterial({
-            map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
-            transparent: true,
-        });
-        const mercury_cloudmesh = new THREE.Mesh(mercury_cloudgeometry,mercury_cloudmaterial);
-        scene.add(mercury_cloudmesh);
+            jupiter_pointerlight.position.set(10,10,30);
+            scene.add(jupiter_pointerlight);
 
-        const mercury_group = new THREE.Group();
-        mercury_group.add(mercury_cloudmesh);
-        mercury_group.add(mercury_sphere);
-        mercury_group.add(mercury_pointerlight);
-        // mercury_group.add(camera);
-        scene.add(mercury_group);
-        mercury_group.position.set(1400,0,0)
+            const jupiter_cloudgeometry = new THREE.SphereGeometry(10.1,32,16);
+            
+            const jupiter_cloudmaterial = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                transparent: true,
+            });
+            const jupiter_cloudmesh = new THREE.Mesh(jupiter_cloudgeometry,jupiter_cloudmaterial);
+            scene.add(jupiter_cloudmesh);
 
-        // Mercury Axis for rotation around sun
-        const mercury_plane = new THREE.CircleGeometry(10,1)
-        const mercury_plane_color = new THREE.MeshBasicMaterial({
-            color: 'black', 
-            wireframe: true,
-        });
-        const mercury_circle = new THREE.Mesh(mercury_plane,mercury_plane_color);
-        scene.add(mercury_circle);
+            const jupiter_group = new THREE.Group();
+            jupiter_group.add(jupiter_cloudmesh);
+            jupiter_group.add(jupiter_sphere);
+            jupiter_group.add(jupiter_pointerlight);
+            jupiter_group.add(camera);
+            camera.position.set(600,0,0);
+            scene.add(jupiter_group);
+            jupiter_group.position.set(6200,0,0)
 
-        const mercury_group_rotation = new THREE.Group();
-        mercury_group_rotation.add(mercury_group);
-        mercury_group_rotation.add(mercury_circle);
+            // Earth Axis for rotation around sun
+            const jupiter_plane = new THREE.CircleGeometry(10,1)
+            const jupiter_plane_color = new THREE.MeshBasicMaterial({
+                color: 'black', 
+                wireframe: true,
+            });
+            const jupiter_circle = new THREE.Mesh(jupiter_plane,jupiter_plane_color);
+            scene.add(jupiter_circle);
 
-        scene.add(mercury_group_rotation);
+            const jupiter_group_rotation = new THREE.Group();
+            jupiter_group_rotation.add(jupiter_group);
+            jupiter_group_rotation.add(jupiter_circle);
+            scene.add(jupiter_group_rotation);
 
 // ***************************************************************************
       //Rendering Sun
@@ -100,20 +102,20 @@ const sun = new THREE.SphereGeometry(1000,32,16);
 // ***************************************************************************
 
         
-        const amb_light = new THREE.AmbientLight(0xffffff, 1);
+const amb_light = new THREE.AmbientLight(0xffffff, 1);
         scene.add(amb_light);
         const controls = new OrbitControls(camera,renderer.domElement)
         function animate() {
             requestAnimationFrame(animate);
             renderer.render( scene, camera );
-            camera.position.x = 1450;
-            camera.rotation.y += 0.01;
-
-            mercury_sphere.rotation.z -= 0.001;
-            mercury_group_rotation.rotation.z += 0.00;
-
-            sun_sphere.rotation.z -= .00001;
-            sun_circle.rotation.x += .001;
+            
+            jupiter_sphere.rotation.y += 0.001;
+            jupiter_group_rotation.rotation.y += 0.001;
+            
+            // cam_group.rotation.z += 0.01;
+            
+            sun_sphere.rotation.z -= .0001;
+            // sun_circle.rotation.x += .00001;
             
             controls.update();
         }

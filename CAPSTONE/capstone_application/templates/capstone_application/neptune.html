@@ -4,9 +4,6 @@
 {% if message %}
     <div id="message"><br>{{message}}</div>
 {% endif %}
-<div id="login-box" class="login-box"> 
-    <h1>Login</h1>
-
 
     <div id = "canvas">
         <script src="https://threejs.org/build/three.js"></script>
@@ -18,7 +15,7 @@
     // ***************************************************************************
             const scene = new THREE.Scene();
           
-            const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+            const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 20000 );
             const renderer = new THREE.WebGLRenderer();
             renderer.setSize( window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -26,16 +23,16 @@
             renderer.autoClear = false;
             renderer.setClearColor(0x00000, 0.0);
             document.body.appendChild(renderer.domElement );
-    // ***************************************************************************
-            // Rendering Mercury
-    // ***************************************************************************
-    const neptune = new THREE.SphereGeometry(49,32,16);
+// ***************************************************************************
+            //Rendering Neptune
+// ***************************************************************************
+const neptune = new THREE.SphereGeometry(49,32,32);
             const neptune_material = new THREE.MeshPhongMaterial({
-                map: THREE.ImageUtils.loadTexture('static/saturn.jpg'),
+                map: THREE.ImageUtils.loadTexture('static/neptune.jpg'),
             });
 
             const neptune_sphere = new THREE.Mesh(neptune, neptune_material);
-            neptune_sphere.rotateX(1.5);
+            // neptune_sphere.rotateX(1.5);
             scene.add(neptune);
 
             const neptune_pointerlight = new THREE.PointLight(0xffffff, 0.0);
@@ -55,6 +52,8 @@
             neptune_group.add(neptune_cloudmesh);
             neptune_group.add(neptune_sphere);
             neptune_group.add(neptune_pointerlight);
+            neptune_group.add(camera);
+            camera.position.set(-250,0,0);
             scene.add(neptune_group);
             neptune_group.position.set(-13000,0,0)
 
@@ -82,7 +81,7 @@
         });
 
         const sun_sphere = new THREE.Mesh(sun, sun_material);
-        sun_sphere.rotateX(1.5708)
+        // sun_sphere.rotateX(1.5708)
         scene.add(sun_sphere);
 
         const sun_pointerlight = new THREE.PointLight({
@@ -103,23 +102,22 @@
     // ***************************************************************************
     
             
-            const amb_light = new THREE.AmbientLight(0xffffff, 1);
-            scene.add(amb_light);
-            const controls = new OrbitControls(camera,renderer.domElement)
-            function animate() {
-                requestAnimationFrame(animate);
-                renderer.render( scene, camera );
-                camera.position.x = -14500;
-                camera.rotation.z += 0.0004;
-    
-                // Neptune rotation
-                neptune_group_rotation.rotation.z += 0.0004;
-
-    
-                sun_sphere.rotation.z -= .00001;
-                sun_circle.rotation.x += .001;
-                
-                controls.update();
+        const amb_light = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(amb_light);
+        const controls = new OrbitControls(camera,renderer.domElement)
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render( scene, camera );
+            
+            neptune_sphere.rotation.y += 0.001;
+            neptune_group_rotation.rotation.y += 0.001;
+            
+            // cam_group.rotation.z += 0.01;
+            
+            sun_sphere.rotation.z -= .0001;
+            // sun_circle.rotation.x += .00001;
+            
+            controls.update();
             }
             animate();
         </script>
