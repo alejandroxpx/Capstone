@@ -15,7 +15,7 @@
 // ***************************************************************************
         const scene = new THREE.Scene();
       
-        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 20000 );
+        const camera = new THREE.PerspectiveCamera(135, window.innerWidth / window.innerHeight, 1, 20000 );
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -28,11 +28,11 @@
 // ***************************************************************************
             //Rendering Mars
 // ***************************************************************************
-const mars = new THREE.SphereGeometry(6.8,32,32);
+const mars = new THREE.SphereGeometry(6.8,100,32);
             const mars_material = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture('static/mars.jpg'),
                 bumpMap: THREE.ImageUtils.loadTexture("static/marsbump1k.jpg"),
-                bumpScale: 10,
+                bumpScale: 5,
             });
 
             const mars_sphere = new THREE.Mesh(mars, mars_material);
@@ -58,7 +58,7 @@ const mars = new THREE.SphereGeometry(6.8,32,32);
             mars_group.add(mars_sphere);
             mars_group.add(mars_pointerlight);
             mars_group.add(camera);
-            camera.position.set(20,0,0)
+            camera.position.set(15,0,0)
             scene.add(mars_group);
             mars_group.position.set(2500,0,0)
 

@@ -15,7 +15,7 @@
 // ***************************************************************************
         const scene = new THREE.Scene();
       
-        const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+        const camera = new THREE.PerspectiveCamera(135, window.innerWidth / window.innerHeight, 1, 20000 );
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -26,7 +26,7 @@
 // ***************************************************************************
             //Rendering Uranus
 // ***************************************************************************
-const uranus = new THREE.SphereGeometry(51,32,32);
+const uranus = new THREE.SphereGeometry(51,100,32);
             const uranus_material = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture('static/uranus.jpg'),
             });
@@ -53,7 +53,7 @@ const uranus = new THREE.SphereGeometry(51,32,32);
             uranus_group.add(uranus_sphere);
             uranus_group.add(uranus_pointerlight);
             uranus_group.add(camera);
-            camera.position.set(-250,0,0);
+            camera.position.set(-100,0,0);
             scene.add(uranus_group);
             uranus_group.position.set(-11000,0,0)
 

@@ -438,15 +438,22 @@ const sun = new THREE.SphereGeometry(1000,32,32);
             });
             const sun_circle = new THREE.Mesh(sun_plane,sun_plane_color);
             scene.add(sun_circle);
+
+// ***************************************************************************
+            // Animate stars
+// ***************************************************************************
+            const stars = new THREE.SphereGeometry(10000,100,32);
+
+            const stars_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture('static/starmap.jpg'),
+                side: THREE.BackSide
+            })
+
+            const starmesh = new THREE.Mesh(stars,stars_material);
+            scene.add(starmesh);
 // ***************************************************************************
             // Animate the Solar System
 // ***************************************************************************
-// Need to make the camera move with the planets depending on what link the user clicks or if it is the default camera.
-            // for(let i=1000; i < 20000; i++){
-            //     camera.position.z = i
-            //     console.log(i)
-            // }
-            // camera.position.z = 20000;
             
             const amb_light = new THREE.AmbientLight(0xffffff, 1);
             scene.add(amb_light);
@@ -455,6 +462,8 @@ const sun = new THREE.SphereGeometry(1000,32,32);
                 requestAnimationFrame(animate);
                 renderer.render( scene, camera );
                 
+                // star material
+                starmesh.rotation.z += 0.0001;
                 // Earth rotation
                 cloudmesh.rotation.z += 0.012;
                 sphere.rotation.y += 0.01;   
@@ -463,10 +472,24 @@ const sun = new THREE.SphereGeometry(1000,32,32);
                 mars_group_rotation.rotation.z += 0.002;
                 // Venus rotation
                 venus_group_rotation.rotation.z += 0.001;
-                let pos = venus_sphere.rotation.y += 0.01;
-                let y = venus_sphere.rotation;
-                console.log("venus",y.y)
-                camera.position.z = y._y*1000;
+                
+                // let sun_position = 1000;
+                // camera.position.z = 1500;
+                // for (let x = 1; x < 100000; x++){
+                x += 1
+                camera.position.z = 3000*Math.sin(x*(180/(100000*Math.PI)))+6000;
+                console.log(camera.position.z)   
+                    // if (y == 15000){
+                    //     for (let x = y; x>1; x--){
+                    //         let y = camera.position.z -= 50*Math.sin(x*180/Math.PI);
+                    //         console.log(y)
+                    //     }
+                    // }
+                // }
+                // for (let j =0;j>0;j--){
+                //     camera.position.z += sun_position + 14;
+                // }
+                // camera.position.z = y._y*1000;
                 // Mercury rotation
                 mercury_sphere.rotation.y += 0.01;
                 mercury_group_rotation.rotation.z += 0.001;

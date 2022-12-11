@@ -16,7 +16,7 @@
     // ***************************************************************************
             const scene = new THREE.Scene();
           
-            const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 20000 );
+            const camera = new THREE.PerspectiveCamera(135, window.innerWidth / window.innerHeight, 1, 20000 );
             const renderer = new THREE.WebGLRenderer();
             renderer.setSize( window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -27,7 +27,7 @@
 // ***************************************************************************
             //Rendering Venus
 // ***************************************************************************
-const venus = new THREE.SphereGeometry(12.1,32,32);
+const venus = new THREE.SphereGeometry(12.1,100,32);
             const venus_material = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture('static/venus.jpg'),
                 bumpMap: THREE.ImageUtils.loadTexture("static/venusbump.jpg"),
@@ -57,7 +57,7 @@ const venus = new THREE.SphereGeometry(12.1,32,32);
             venus_group.add(venus_sphere);
             venus_group.add(venus_pointerlight);
             venus_group.add(camera);
-            camera.position.set(40,0,0)
+            camera.position.set(30,0,0)
             scene.add(venus_group);
             venus_group.position.set(1700,0,0)
 

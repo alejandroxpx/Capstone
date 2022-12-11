@@ -15,7 +15,7 @@
 // ***************************************************************************
         const scene = new THREE.Scene();
       
-        const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 20000 );
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -26,7 +26,7 @@
 // ***************************************************************************
             //Rendering Jupiter
 // ***************************************************************************
-const jupiter = new THREE.SphereGeometry(143,32,16);
+const jupiter = new THREE.SphereGeometry(143,100,32);
             const jupiter_material = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture('static/jupiter.jpg'),
             });
@@ -54,7 +54,7 @@ const jupiter = new THREE.SphereGeometry(143,32,16);
             jupiter_group.add(jupiter_sphere);
             jupiter_group.add(jupiter_pointerlight);
             jupiter_group.add(camera);
-            camera.position.set(600,0,0);
+            camera.position.set(700,0,0);
             scene.add(jupiter_group);
             jupiter_group.position.set(6200,0,0)
 

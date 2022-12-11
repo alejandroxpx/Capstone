@@ -15,7 +15,7 @@
 // ***************************************************************************
         const scene = new THREE.Scene();
       
-        const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 20000 );
+        const camera = new THREE.PerspectiveCamera(135, window.innerWidth / window.innerHeight, 1, 20000 );
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -27,7 +27,7 @@
 // ***************************************************************************
             //Rendering earth
 // ***************************************************************************
-const earth = new THREE.SphereGeometry(12.8,32,30);
+const earth = new THREE.SphereGeometry(12.8,100,50);
             const material = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
                 bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
@@ -43,7 +43,7 @@ const earth = new THREE.SphereGeometry(12.8,32,30);
             pointerlight.position.set(10,10,30);
             scene.add(pointerlight);
 
-            const cloudgeometry = new THREE.SphereGeometry(13,32,30);
+            const cloudgeometry = new THREE.SphereGeometry(12.9,100,32);
             
             const cloudmaterial = new THREE.MeshPhongMaterial({
                 map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
@@ -57,7 +57,7 @@ const earth = new THREE.SphereGeometry(12.8,32,30);
             earth_group.add(sphere);
             earth_group.add(pointerlight);
             earth_group.add(camera);
-            camera.position.set(50,0,0)
+            camera.position.set(20,0,0)
             scene.add(earth_group);
             earth_group.position.set(2000,0,0)
 
