@@ -18,7 +18,7 @@
             const scene = new THREE.Scene();
           
             const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 200000 );
-            camera.position.set(0,0,4000);
+            camera.position.set(0,0,8000);
             const cam_group = new THREE.Group();
             cam_group.add(camera);
             scene.add(cam_group);
@@ -295,18 +295,19 @@ const saturn = new THREE.SphereGeometry(120,32,16);
             saturn_group.add(saturn_sphere);
             saturn_group.add(saturn_pointerlight);
             scene.add(saturn_group);
-            saturn_group.position.set(9500,0,0)
+            saturn_group.position.set(9000,0,0)
 
             // Adding saturns rings
             const rings = new THREE.CircleGeometry(305,30);
             const rings_material = new THREE.MeshPhongMaterial({
                 color:"white",
                 map: THREE.ImageUtils.loadTexture('static/rings.jpg'),
+                side: THREE.BackSide,
                 transparent: 0.9,
-            
             })
             const circle_rings = new THREE.Mesh(rings,rings_material);
-            circle_rings.position.set(9500,0,0)
+            circle_rings.position.set(9000,0,0)
+            circle_rings.rotateX(3.14)
             scene.add(circle_rings);
 
             // Earth Axis for rotation around sun
@@ -355,7 +356,7 @@ const uranus = new THREE.SphereGeometry(51,32,16);
             uranus_group.add(uranus_sphere);
             uranus_group.add(uranus_pointerlight);
             scene.add(uranus_group);
-            uranus_group.position.set(-11000,0,0)
+            uranus_group.position.set(10000,0,0)
 
             // uranus Axis for rotation around sun
             const uranus_plane = new THREE.CircleGeometry(10,1)
@@ -402,7 +403,7 @@ const neptune = new THREE.SphereGeometry(49,32,16);
             neptune_group.add(neptune_sphere);
             neptune_group.add(neptune_pointerlight);
             scene.add(neptune_group);
-            neptune_group.position.set(-13000,0,0)
+            neptune_group.position.set(11000,0,0)
 
             // uranus Axis for rotation around sun
             const neptune_plane = new THREE.CircleGeometry(10,1)
@@ -472,29 +473,29 @@ const sun = new THREE.SphereGeometry(1000,32,32);
                 // Earth rotation
                 cloudmesh.rotation.z += 0.012;
                 sphere.rotation.y += 0.01;   
-                earth_group_rotation.rotation.z += 0.001;
+                earth_group_rotation.rotation.z += 0.004;
                 // Mars rotation
                 mars_group_rotation.rotation.z += 0.002;
                 // Venus rotation
-                venus_group_rotation.rotation.z += 0.001;
+                venus_group_rotation.rotation.z += 0.008;
                 
                 // camera.rotation = -sun_circle.rotation;
                 cam_group.rotation.x += 0.001;
                 // cam_group.rotation.y += 0.001;
-                console.log(camera.position);
-                console.log(camera.rotation);
+                // console.log(camera.position);
+                // console.log(camera.rotation);
 
                 // Mercury rotation
                 mercury_sphere.rotation.y += 0.01;
-                mercury_group_rotation.rotation.z += 0.001;
+                mercury_group_rotation.rotation.z += 0.003;
                 // Jupiter rotation
-                jupiter_group_rotation.rotation.z += 0.001;
+                jupiter_group_rotation.rotation.z += 0.009;
                 // Saturn rotation
-                saturn_group_rotation.rotation.z += 0.0004;
+                saturn_group_rotation.rotation.z += 0.008;
                 // Uranus rotation
-                uranus_group_rotation.rotation.z += 0.0004;
+                uranus_group_rotation.rotation.z += 0.004;
                 // Neptune rotation
-                neptune_group_rotation.rotation.z += 0.0004;
+                neptune_group_rotation.rotation.z += 0.004;
                 // Sun rotation
                 circle_rings.rotation.z += 0.002;
                 sun_sphere.rotation.y += .001;

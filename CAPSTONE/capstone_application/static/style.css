@@ -100,11 +100,11 @@ a.header-button{
     color: white;
 }
 .title{
-    color: rgb(114, 114, 114);
+    color: rgb(255, 255, 255);
     z-index: 10;
 }
 #top{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     /* font: bold; */
     z-index: 10;
     width: 100%;
@@ -113,7 +113,7 @@ a.header-button{
     font-size: 30px;
 }
 a {
-    color: rgb(120, 120, 120);
+    color: rgb(255, 255, 255);
 }
 #message{
     z-index: 10;
@@ -124,7 +124,7 @@ a {
     top: 0;
     left: 0;
     z-index: 10;
-    background-color: rgb(183, 177, 177);
+    background-color: rgb(255, 255, 255);
     border: 2px solid rgb(252, 252, 252);
     width: 100%;
     /* color: white; */
