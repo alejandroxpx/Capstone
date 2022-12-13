@@ -52,7 +52,18 @@ const earth = new THREE.SphereGeometry(12.8,100,50);
             const cloudmesh = new THREE.Mesh(cloudgeometry,cloudmaterial);
             scene.add(cloudmesh);
 
+            // Adding a moon to earth
+            const moon = new THREE.SphereGeometry(5.8,32,32);
+            const moon_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
+                color: 'white',
+            });
+            const moon_sphere = new THREE.Mesh(moon, moon_material);
+            scene.add(moon_sphere);
+
             const earth_group = new THREE.Group();
+            earth_group.add(moon);
+            moon_sphere.position.set(25,0,0)
             earth_group.add(cloudmesh);
             earth_group.add(sphere);
             earth_group.add(pointerlight);
