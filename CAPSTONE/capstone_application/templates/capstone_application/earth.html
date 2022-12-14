@@ -15,7 +15,7 @@
 // ***************************************************************************
         const scene = new THREE.Scene();
       
-        const camera = new THREE.PerspectiveCamera(135, window.innerWidth / window.innerHeight, 1, 20000 );
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000 );
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -34,13 +34,22 @@ const earth = new THREE.SphereGeometry(12.8,100,50);
                 bumpScale: 10,
             });
 
+            // Adding a moon to earth
+            const moon = new THREE.SphereGeometry(1,100,64);
+            const moon_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture('static/moon.jpg'),
+                color: 'white',
+            });
+
+            const moon_sphere = new THREE.Mesh(moon, moon_material);
+            scene.add(moon_sphere); 
+
             const sphere = new THREE.Mesh(earth, material);
-            // sphere.rotateX(1.5);
             scene.add(sphere);
 
             const pointerlight = new THREE.PointLight(0xffffff, 0.0);
 
-            pointerlight.position.set(10,10,30);
+            pointerlight.position.set(15,10,30);
             scene.add(pointerlight);
 
             const cloudgeometry = new THREE.SphereGeometry(12.9,100,32);
@@ -52,37 +61,51 @@ const earth = new THREE.SphereGeometry(12.8,100,50);
             const cloudmesh = new THREE.Mesh(cloudgeometry,cloudmaterial);
             scene.add(cloudmesh);
 
-            // Adding a moon to earth
-            const moon = new THREE.SphereGeometry(5.8,32,32);
-            const moon_material = new THREE.MeshPhongMaterial({
-                map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
-                color: 'white',
-            });
-            const moon_sphere = new THREE.Mesh(moon, moon_material);
-            scene.add(moon_sphere);
-
+            
             const earth_group = new THREE.Group();
-            earth_group.add(moon);
-            moon_sphere.position.set(25,0,0)
+
             earth_group.add(cloudmesh);
             earth_group.add(sphere);
             earth_group.add(pointerlight);
-            earth_group.add(camera);
-            camera.position.set(20,0,0)
+            // earth_group.add(camera);
+            earth_group.add(moon_sphere);
+            moon_sphere.position.set(38,0,0)
+            // camera.position.set(50,0,0)
             scene.add(earth_group);
-            earth_group.position.set(2000,0,0)
+            earth_group.position.set(6000,0,0)
 
+            // camera.position.set(6200,0,0)
             // Earth Axis for rotation around sun
-            const earth_plane = new THREE.CircleGeometry(10,1)
-            const plane_color = new THREE.MeshBasicMaterial({color: 'black', wireframe: true});
+
+            const earth_plane = new THREE.CircleGeometry(60,200);
+            earth_plane.rotateX(1.5708)
+            const plane_color = new THREE.MeshBasicMaterial({color: 'white', wireframe: true});
             const earth_circle = new THREE.Mesh(earth_plane,plane_color);
             scene.add(earth_circle);
 
             const earth_group_rotation = new THREE.Group();
             earth_group_rotation.add(earth_group);
+
             earth_group_rotation.add(earth_circle);
 
             scene.add(earth_group_rotation);
+
+            const new_group = new THREE.Group();
+            // new_group.add(earth_group_rotation);
+            
+            const earth_plane_moon = new THREE.CircleGeometry(2,200);
+            
+            const earth_plane_color = new THREE.MeshBasicMaterial({color: 'white', wireframe: true});
+            
+            const earth_moon_mesh = new THREE.Mesh(earth_plane_moon,earth_plane_color);
+            earth_moon_mesh.rotateX(1.5708)
+            earth_moon_mesh.position.set(6000,0,0);
+            new_group.add(camera);
+            camera.position.set(6055,0,0);
+            new_group.add(earth_moon_mesh)
+            
+            scene.add(new_group)
+
 
 // ***************************************************************************
       //Rendering Sun
@@ -121,10 +144,13 @@ const amb_light = new THREE.AmbientLight(0xffffff, 1);
             requestAnimationFrame(animate);
             renderer.render( scene, camera );
             
-            sphere.rotation.y += 0.001;
+            sphere.rotation.y += 0.003;
             cloudmesh.rotation.y += 0.0015;
             earth_group_rotation.rotation.y += 0.001;
-            
+            earth_group.rotation.y += 0.001;
+            new_group.rotation.y += 0.001;
+            // new_group.rotation.x += 0.001;
+            // new_group.rotation.y += 0.01;
             // cam_group.rotation.z += 0.01;
             
             sun_sphere.rotation.z -= .0001;
