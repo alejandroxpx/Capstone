@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',function() {
     // document.querySelector('#Home').addEventListener('click', () => Home());
     
     // Load Mercury page
-    document.querySelector('#mercury').addEventListener('click', () => Mercury());
+    document.querySelector('a#mercury').addEventListener('click', () => Mercury());
     // Load Venus page
     // document.querySelector('#venus').addEventListener('click', () => Venus());
     // Load Earth page
@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded',function() {
     // document.querySelector('#uranus').addEventListener('click', () => Uranus());
     // Load Neptune page
     // document.querySelector('#neptune').addEventListener('click', () => Neptune());
-    return false
-})
+});
 //********************************************************************************************
 //          Login/Logout/Home/Register
 //********************************************************************************************
@@ -60,6 +59,22 @@ function Register(){
 //********************************************************************************************
 // Mercury
 function Mercury(){
+    fetch("https://api.le-systeme-solaire.net/rest/bodies/")
+    .then(response => response.json())
+    .then(data=>{
+        const info = data.englishName["Mercury"];
+        console.log(info)
+        console.log(info)
+        console.log(info)
+        console.log(info)
+        console.log(info)
+        console.log(info)
+        console.log(info)
+        console.log(info)
+
+        document.querySelector('div#description-mercury').innerHTML = `${info}`;
+        return false;
+    })
     // allow people to sign out from website
     console.log("made it to the Mercury page")
     console.log("made it to the Mercury page")
@@ -68,7 +83,8 @@ function Mercury(){
     console.log("made it to the Mercury page")
     console.log("made it to the Mercury page")
 
-}
+    return false
+};
 // Venus
 function Venus(){
     // allow people to sign out from website

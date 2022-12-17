@@ -80,10 +80,18 @@ a.header-button{
     margin-top: 2%;
     margin-bottom: 5%;
 }
-#login-box, canvas, #header,#logout, #home, #tab-button, #message, #top, .header, .register-box{
+#login-box, canvas, #header,#logout, #home, #tab-button, #message, #top, .header, .register-box,#description-mercury{
     position:absolute;
 }
 #logout{
+    z-index: 10;
+    color: white;
+}
+#description-mercury{
+    width: 30%;
+    position: relative;
+    left: 5%;
+    top: 60%;
     z-index: 10;
     color: white;
 }
