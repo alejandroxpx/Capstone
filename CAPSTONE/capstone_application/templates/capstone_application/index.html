@@ -2,14 +2,57 @@
 
 {%block body%}
 <div id="logout">
+    
     {% if message %}
     <div>{{message}}</div>
     {% endif %}
     
     <!-- <h1>Index</h1> -->
-    <div id = "canvas">
+    <!-- <div id = "canvas">
         <script src="https://threejs.org/build/three.js"></script>
         <script id="canvas" type="module">
+//********************************************************************************************
+// document.addEventListener('DOMContentLoaded',function() {
+
+//     fetch('https://api.le-systeme-solaire.net/rest/bodies/{soleil}')
+//     .then(response => response.json())
+//     .then(data=>{
+//         console.log(data)
+//         // console.log(data.englishName)
+//         // console.log(data.equaRadius)
+
+//         return false;
+//     });
+    // Load Login page
+    // document.querySelector('#Login').addEventListener('click', () => Login());
+    // Load Register page
+    // document.querySelector('#Register').addEventListener('click', () => Register());
+    // Load sign out page
+    // document.querySelector('#Logout').addEventListener('click', () => Logout());
+    // Load Home page
+    // document.querySelector('#Home').addEventListener('click', () => Home());
+    
+    // Load Mercury page
+    // document.querySelector('a#mercury').addEventListener('click', () => Mercury(data));
+    // Load Venus page
+    // document.querySelector('#venus').addEventListener('click', () => Venus());
+    // Load Earth page
+    // document.querySelector('#earth').addEventListener('click', () => Earth());
+    // Load Mars page
+    // document.querySelector('#mars').addEventListener('click', () => Mars());
+    // Load Jupiter page
+    // document.querySelector('#jupiter').addEventListener('click', () => Jupiter());
+    // Load Saturn page
+    // document.querySelector('#Saturn').addEventListener('click', () => Saturn());
+    // Load Uranus page
+    // document.querySelector('#uranus').addEventListener('click', () => Uranus());
+    // Load Neptune page
+    // document.querySelector('#neptune').addEventListener('click', () => Neptune());
+// });
+//             function Mercury(data){
+//    console.log(data)
+
+// }
             import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
             import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
 // ***************************************************************************
@@ -505,7 +548,7 @@ const sun = new THREE.SphereGeometry(1000,32,32);
             }
             animate();
         </script>
-    </div> <!-- end of div canvas -->
+    </div> end of div canvas -->
 
 </div>
 
