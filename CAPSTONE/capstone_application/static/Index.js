@@ -12,7 +12,24 @@ document.addEventListener('DOMContentLoaded',function() {
     document.querySelector('div#Saturn.planets').style.display = 'none';
     document.querySelector('div#Uranus.planets').style.display = 'none';
     document.querySelector('div#Neptune.planets').style.display = 'none';
-
+        
+    let i = 0;
+    // select all canvas and give it an id
+    document.querySelectorAll('canvas').forEach( canvas =>{
+        //enumerate each canvas
+        canvas.setAttribute('id',`${i}`)
+        i++;
+    })
+    // Hide planets except home page at the start
+    document.getElementById('0').style.display = 'block';
+    document.getElementById('1').style.display = 'none';
+    document.getElementById('2').style.display = 'none';
+    document.getElementById('3').style.display = 'none';
+    document.getElementById('4').style.display = 'none';
+    document.getElementById('5').style.display = 'none';
+    document.getElementById('6').style.display = 'none';
+    document.getElementById('7').style.display = 'none';
+    document.getElementById('8').style.display = 'none';
 
    // Select all buttons
    document.querySelectorAll('button.planets-button').forEach(button => {
@@ -24,13 +41,7 @@ document.addEventListener('DOMContentLoaded',function() {
     }
 })
 
-    let i = 0;
-    // select all canvas
-    document.querySelectorAll('canvas').forEach( canvas =>{
-        i++;
-        //enumerate each canvas
-        canvas.setAttribute('id',`${i}`)
-    })
+
 //**********************************load planets *********************************************
 //          DomContentLoaded
 
@@ -68,23 +79,16 @@ function showPage(page) {
 }
 // function that'll hide the canvas and only show the correct one depending on the button pushed.
 function showCanvas(page){
-    let j = 2;
-    const list = [2,3,4,5,6,7,8,9,10]
+    let j = 0;
+    const list = [0,1,2,3,4,5,6,7,8,9]
     const planet_arr = ["Home","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"];
-    let index = planet_arr.indexOf(`${page}`, list) +2;
-    document.querySelectorAll('canvas').forEach(canvas => {
-        console.log(j)
-        if (planet_arr[j] == page){
-            return ;
-        }else{
-            canvas.hidden = 'hidden';
-        }
-        j++;
- 
-    })
+    let index = planet_arr.indexOf(`${page}`, list);
+    document.querySelectorAll('canvas').forEach(canvas =>{
+        // Hide all the canvas
+        canvas.style.display = 'none';
+    });
   
-    console.log(index)
-    // Show the div provided in the argument
+    // Show the canvas provided in the argument
     document.getElementById(`${index}`).style.display = 'block';
 
 }
