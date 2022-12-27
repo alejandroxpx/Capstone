@@ -2,12 +2,17 @@
 //          DomContentLoaded
 //********************************************************************************************
 document.addEventListener('DOMContentLoaded',function() {
+    // Hide planets except home page at the start
+    document.querySelector('div#Home.planets').style.display = 'block';
+    document.querySelector('div#Mercury.planets').style.display = 'none';
+    document.querySelector('div#Venus.planets').style.display = 'none';
+    document.querySelector('div#Earth.planets').style.display = 'none';
+    document.querySelector('div#Mars.planets').style.display = 'none';
+    document.querySelector('div#Jupiter.planets').style.display = 'none';
+    document.querySelector('div#Saturn.planets').style.display = 'none';
+    document.querySelector('div#Uranus.planets').style.display = 'none';
+    document.querySelector('div#Neptune.planets').style.display = 'none';
 
-    document.querySelector('div#Home-page.planets').style.display = 'block';
-    document.querySelector('div#Mercury-page.planets').style.display = 'none';
-    document.querySelector('div#Venus-page.planets').style.display = 'none';
-    document.querySelector('div#Earth-page.planets').style.display = 'none';
-    document.querySelector('div#Mars-page.planets').style.display = 'none';
 
    // Select all buttons
    document.querySelectorAll('button.planets-button').forEach(button => {
@@ -15,6 +20,7 @@ document.addEventListener('DOMContentLoaded',function() {
     // When a button is clicked, switch to that page
     button.onclick = function() {
         showPage(this.dataset.page);
+        showCanvas(this.dataset.page);
     }
 })
 
@@ -56,13 +62,30 @@ function showPage(page) {
     document.querySelectorAll('div.planets').forEach(div => {
         div.style.display = 'none';
     });
-
+ 
     // Show the div provided in the argument
     document.querySelector(`div#${page}.planets`).style.display = 'block';
-    document.querySelector('canvas#2').style.display = 'block';
 }
 // function that'll hide the canvas and only show the correct one depending on the button pushed.
-function showCanvas(num){
+function showCanvas(page){
+    let j = 2;
+    const list = [2,3,4,5,6,7,8,9,10]
+    const planet_arr = ["Home","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"];
+    let index = planet_arr.indexOf(`${page}`, list) +2;
+    document.querySelectorAll('canvas').forEach(canvas => {
+        console.log(j)
+        if (planet_arr[j] == page){
+            return ;
+        }else{
+            canvas.hidden = 'hidden';
+        }
+        j++;
+ 
+    })
+  
+    console.log(index)
+    // Show the div provided in the argument
+    document.getElementById(`${index}`).style.display = 'block';
 
 }
 //****************************Login/Logout/Home/Register***************************************
