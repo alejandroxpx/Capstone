@@ -16,24 +16,24 @@ def index(request):
     return render(request, "capstone_application/index.html")
 
 def login_view(request):
-    if request.method == "POST":
-        # Get username
-        username = request.POST["username"]
-        # Get password
-        password = request.POST["password"]
+    # if request.method == "POST":
+    #     # Get username
+    #     username = request.POST["username"]
+    #     # Get password
+    #     password = request.POST["password"]
         
-        # if found in database, login and return home page
-        try:
-            (User.objects.get(username=username, password=password))
-            # login(request, user)
-            return render(request,"capstone_application/home.html",{
-                "message":"Hello, Alex!"
-            })
-        # return error and reload login page
-        except:
-            return render(request, "capstone_application/login.html",{
-                "message":"Invalid credentials"
-            })
+    #     # if found in database, login and return home page
+    #     try:
+    #         (User.objects.get(username=username, password=password))
+    #         # login(request, user)
+    #         return render(request,"capstone_application/home.html",{
+    #             "message":"Hello, Alex!"
+    #         })
+    #     # return error and reload login page
+    #     except:
+    #         return render(request, "capstone_application/login.html",{
+    #             "message":"Invalid credentials"
+    #         })
     return render(request, "capstone_application/login.html")
 
 def logout(request):

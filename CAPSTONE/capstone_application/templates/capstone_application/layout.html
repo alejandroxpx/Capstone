@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Capstone</title>
+    <title>Solar System</title>
     <link rel="stylesheet" href="static/style.css">
     <script src="static/index.js"></script>
-</head>
+</head> <!-- head -->
 <body>
 
 <div id="top">
-        <!-- <a class="header-button" href="{% url 'login' %}">Login/logout</a>
-        <a class="header-button" href="{% url 'register' %}">Register</a>
-        <a class="header-button" href="{% url 'index' %}">Home</a> -->
+
         <button class = "planets-button" data-page="Home" >Home</button>
         <button class = "planets-button" data-page="Mercury" >Mercury</button>
         <button class = "planets-button" data-page="Venus">Venus</button>
@@ -20,17 +18,9 @@
         <button class = "planets-button" data-page="Saturn">Saturn</button>
         <button class = "planets-button" data-page="Uranus">Uranus</button>
         <button class = "planets-button" data-page="Neptune">Neptune</button>
-
-        <!-- <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'mercury' %}" id="mercury">Mercury</a>
-        <a href="{% url 'venus' %}" id="venus">Venus</a>
-        <a href="{% url 'earth' %}" id="earth">Earth</a>
-        <a href="{% url 'mars' %}" id="mars">Mars</a>
-        <a href="{% url 'jupiter' %}" id="jupiter">Jupiter</a>
-        <a href="{% url 'saturn' %}" id="saturn">Saturn</a>
-        <a href="{% url 'uranus' %}" id="uranus">Uranus</a>
-        <a href="{% url 'neptune' %}" id="neptune">Neptune</a> -->
-</div>
+        <button class = "planets-button" data-page="Login">Login</button>
+        
+    </div> <!--end div top -->
 
     {% block body %}
 
@@ -38,56 +28,15 @@
 
     <div id = "header">
         <!-- <h1 class="title">Solar System</h1> -->
-    </div>
-        
+    </div> <!-- Header -->
+
+
     <div class="planets" id="Home">
-        <h1>Home Page</h1>
+        <!-- <h1>Home Page</h1> -->
             <script src="https://threejs.org/build/three.js"></script>
             <!-- <script src="./../../static/three.js"></script> -->
             <script id="canvas" type="module">
 
-    //********************************************************************************************
-        // document.addEventListener('DOMContentLoaded',function() {
-    
-        // fetch('https://api.le-systeme-solaire.net/rest/bodies/{soleil}')
-        // .then(response => response.json())
-        // .then(data=>{
-        //     console.log(data)
-        //     // console.log(data.englishName)
-        //     // console.log(data.equaRadius)
-    
-        //     return false;
-        // });
-        // Load Login page
-        // document.querySelector('#Login').addEventListener('click', () => Login());
-        // Load Register page
-        // document.querySelector('#Register').addEventListener('click', () => Register());
-        // Load sign out page
-        // document.querySelector('#Logout').addEventListener('click', () => Logout());
-        // Load Home page
-        // document.querySelector('#Home').addEventListener('click', () => Home());
-        
-        // Load Mercury page
-        // document.querySelector('a#mercury').addEventListener('click', () => Mercury(data));
-        // Load Venus page
-        // document.querySelector('#venus').addEventListener('click', () => Venus());
-        // Load Earth page
-        // document.querySelector('#earth').addEventListener('click', () => Earth());
-        // Load Mars page
-        // document.querySelector('#mars').addEventListener('click', () => Mars());
-        // Load Jupiter page
-        // document.querySelector('#jupiter').addEventListener('click', () => Jupiter());
-        // Load Saturn page
-        // document.querySelector('#Saturn').addEventListener('click', () => Saturn());
-        // Load Uranus page
-        // document.querySelector('#uranus').addEventListener('click', () => Uranus());
-        // Load Neptune page
-        // document.querySelector('#neptune').addEventListener('click', () => Neptune());
-    // });
-                // function Mercury(data){
-    //    console.log(data)
-    
-    // }
                 import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
                 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
     // ***************************************************************************
@@ -509,7 +458,7 @@
                 scene.add(sun_sphere);
     
                 const sun_pointerlight = new THREE.PointLight({
-                    color:'white'});
+                    color:'white'},1,10000);
                 sun_pointerlight.position.set(50,0,0);
                 scene.add(sun_pointerlight);
     
@@ -525,11 +474,12 @@
     // ***************************************************************************
                 // Animate stars
     // ***************************************************************************
-                const stars = new THREE.SphereGeometry(100000,500,64);
+                const stars = new THREE.SphereGeometry(20000,500,64);
     
                 const stars_material = new THREE.MeshPhongMaterial({
-                    map: THREE.ImageUtils.loadTexture('static/starmap.jpg'),
-                    side: THREE.BackSide
+                    map: THREE.ImageUtils.loadTexture('static/dark_image.jpg'),
+                    side: THREE.BackSide,
+                    // color: 'black'
                 })
     
                 const starmesh = new THREE.Mesh(stars,stars_material);
@@ -558,9 +508,7 @@
                     
                     // camera.rotation = -sun_circle.rotation;
                     cam_group.rotation.x += 0.001;
-                    // cam_group.rotation.y += 0.001;
-                    // console.log(camera.position);
-                    // console.log(camera.rotation);
+        
     
                     // Mercury rotation
                     mercury_sphere.rotation.y += 0.01;
@@ -578,15 +526,15 @@
                     sun_sphere.rotation.y += .001;
                     sun_circle.rotation.z += .001;
                     
-                    controls.update();
+                    controls.update()
                 }
                 animate();
             </script>
 
-    </div> <!-- end of Home-page -->
+    </div> <!-- Home-page -->
 
     <div class="planets" id="Mercury">
-        <h1 >Mercury Page</h1>
+        <!-- <h1 >Mercury Page</h1> -->
 
             <div id = "canvas">
                 <script src="https://threejs.org/build/three.js"></script>
@@ -606,6 +554,8 @@
                     renderer.autoClear = false;
                     renderer.setClearColor(0x00000, 0.0);
                     document.body.appendChild(renderer.domElement );
+
+
             // ***************************************************************************
                     // Rendering Mercury
             // ***************************************************************************
@@ -652,11 +602,10 @@
                     mercury_group_rotation.add(mercury_group);
                     // mercury_group_rotation.add(camera);
                     mercury_group_rotation.add(mercury_circle);
-
                     scene.add(mercury_group_rotation);
         
             // ***************************************************************************
-                //Rendering Sun
+                //Rendering Suns
             // ***************************************************************************
             const sun = new THREE.SphereGeometry(1000,100,32);
                     const sun_material = new THREE.MeshPhongMaterial({
@@ -680,6 +629,14 @@
                     });
                     const sun_circle = new THREE.Mesh(sun_plane,sun_plane_color);
                     scene.add(sun_circle);
+            
+            // ***************************************************************************
+                    // Informational Text about Planet
+            // ***************************************************************************
+            const info_text = document.createElement("p");
+                    info_text.innerText = "This is a paragraph.";
+                    document.body.appendChild(info_text);
+
             // ***************************************************************************
                     // Animate the Solar System
             // ***************************************************************************
@@ -689,6 +646,7 @@
                     scene.add(amb_light);
                     const controls = new OrbitControls(camera,renderer.domElement)
                     function animate() {
+                    
                         requestAnimationFrame(animate);
                         renderer.render( scene, camera );
                         
@@ -703,13 +661,14 @@
                         controls.update();
                     }
                     animate();
+
                 </script>
             </div> <!-- end of div canvas -->
 
     </div> <!-- mercury -->
     
     <div class="planets" id="Venus">
-        <h1>Venus Page</h1>
+        <!-- <h1>Venus Page</h1> -->
             <div id = "canvas">
                 <script src="https://threejs.org/build/three.js"></script>
                 <script id="canvas" type="module">
@@ -830,7 +789,7 @@
     </div> <!-- venus -->
     
     <div class="planets" id="Earth">
-        <h1>Earth Page</h1>
+        <!-- <h1>Earth Page</h1> -->
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
             <script id="canvas" type="module">
@@ -990,7 +949,7 @@
     </div> <!-- earth -->
 
     <div class="planets" id="Mars">
-        <h1>Mars Page</h1>
+        <!-- <h1>Mars Page</h1> -->
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
             <script id="canvas" type="module">
@@ -1117,7 +1076,7 @@
     </div> <!-- mars -->
 
     <div class="planets" id="Jupiter">
-        <h1>Jupiter Page</h1>
+        <!-- <h1>Jupiter Page</h1> -->
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
             <script id="canvas" type="module">
@@ -1238,7 +1197,7 @@
     </div> <!-- jupiter -->
 
     <div class="planets" id="Saturn">
-        <h1>Saturn Page</h1>
+        <!-- <h1>Saturn Page</h1> -->
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
             <script id="canvas" type="module">
@@ -1376,7 +1335,7 @@
     </div> <!-- saturn -->
 
     <div class="planets" id="Uranus">
-        <h1>Uranus Page</h1>
+        <!-- <h1>Uranus Page</h1> -->
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
             <script id="canvas" type="module">
@@ -1495,9 +1454,9 @@
             </script>
         </div> <!-- end of div canvas -->
     </div> <!-- uranus -->
-
+ 
     <div class="planets" id="Neptune">
-        <h1>Neptune Page</h1>
+        <!-- <h1>Neptune Page</h1> -->
         <div id = "canvas">
             <script src="https://threejs.org/build/three.js"></script>
             <script id="canvas" type="module">
@@ -1615,14 +1574,191 @@
                 animate();
             </script>
         </div> <!-- end of div canvas -->
-    </div>
+    </div> <!-- Neptune -->
+    
+
+    
+    <div class="planets" id="Login">
+    <!-- <h1>Earth Page</h1> -->
+    <div id = "canvas">
+        <script src="https://threejs.org/build/three.js"></script>
+        <script id="canvas" type="module">
+            import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
+            import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.module.js'; 
+    // ***************************************************************************
+            // Creating the scene
+    // ***************************************************************************
+            const scene = new THREE.Scene();
+          
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000 );
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+    
+            renderer.autoClear = false;
+            renderer.setClearColor(0x00000, 0.0);
+            document.body.appendChild(renderer.domElement );
+    
+    // ***************************************************************************
+                //Rendering earth
+    // ***************************************************************************
+    const earth = new THREE.SphereGeometry(12.8,100,50);
+                const material = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture('static/earthmap4k.jpg'),
+                    bumpMap: THREE.ImageUtils.loadTexture("static/earthbump4k.jpg"),
+                    bumpScale: 10,
+                });
+    
+                // Adding a moon to earth
+                const moon = new THREE.SphereGeometry(1,100,64);
+                const moon_material = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture('static/moon.jpg'),
+                    color: 'white',
+                });
+    
+                const moon_sphere = new THREE.Mesh(moon, moon_material);
+                scene.add(moon_sphere); 
+    
+                const sphere = new THREE.Mesh(earth, material);
+                scene.add(sphere);
+    
+                const pointerlight = new THREE.PointLight(0xffffff, 0.0);
+    
+                pointerlight.position.set(15,10,30);
+                scene.add(pointerlight);
+    
+                const cloudgeometry = new THREE.SphereGeometry(12.9,100,32);
+                
+                const cloudmaterial = new THREE.MeshPhongMaterial({
+                    map: THREE.ImageUtils.loadTexture("static/earthCloud.png"),
+                    transparent: true,
+                });
+                const cloudmesh = new THREE.Mesh(cloudgeometry,cloudmaterial);
+                scene.add(cloudmesh);
+    
+                
+                const earth_group = new THREE.Group();
+    
+                earth_group.add(cloudmesh);
+                earth_group.add(sphere);
+                earth_group.add(pointerlight);
+                // earth_group.add(camera);
+                earth_group.add(moon_sphere);
+                moon_sphere.position.set(38,0,0)
+                // camera.position.set(50,0,0)
+                scene.add(earth_group);
+                earth_group.position.set(6000,0,0)
+    
+                // camera.position.set(6200,0,0)
+                // Earth Axis for rotation around sun
+    
+                const earth_plane = new THREE.CircleGeometry(60,200);
+                earth_plane.rotateX(1.5708)
+                const plane_color = new THREE.MeshBasicMaterial({color: 'white', wireframe: true});
+                const earth_circle = new THREE.Mesh(earth_plane,plane_color);
+                scene.add(earth_circle);
+    
+                const earth_group_rotation = new THREE.Group();
+                earth_group_rotation.add(earth_group);
+    
+                earth_group_rotation.add(earth_circle);
+    
+                scene.add(earth_group_rotation);
+    
+                const new_group = new THREE.Group();
+                // new_group.add(earth_group_rotation);
+                
+                const earth_plane_moon = new THREE.CircleGeometry(2,200);
+                
+                const earth_plane_color = new THREE.MeshBasicMaterial({color: 'white', wireframe: true});
+                
+                const earth_moon_mesh = new THREE.Mesh(earth_plane_moon,earth_plane_color);
+                earth_moon_mesh.rotateX(1.5708)
+                earth_moon_mesh.position.set(6000,0,0);
+                new_group.add(camera);
+                camera.position.set(6055,0,0);
+                new_group.add(earth_moon_mesh)
+                
+                scene.add(new_group)
+    
+    
+    // ***************************************************************************
+          //Rendering Sun
+    // ***************************************************************************
+    const sun = new THREE.SphereGeometry(1000,32,32);
+            const sun_material = new THREE.MeshPhongMaterial({
+                map: THREE.ImageUtils.loadTexture("static/sun8k.jpg"),
+            });
+    
+            const sun_sphere = new THREE.Mesh(sun, sun_material);
+            sun_sphere.rotateX(1.5708)
+            scene.add(sun_sphere);
+    
+            const sun_pointerlight = new THREE.PointLight({
+                color:'white'});
+            sun_pointerlight.position.set(50,0,0);
+            scene.add(sun_pointerlight);
+    
+            //Sun Axis for rotation around sun
+            const sun_plane = new THREE.CircleGeometry(10,10)
+            const sun_plane_color = new THREE.MeshBasicMaterial({
+                color: 'yellow', 
+                wireframe: true
+            });
+            const sun_circle = new THREE.Mesh(sun_plane,sun_plane_color);
+            scene.add(sun_circle);
+    // ***************************************************************************
+            // Animate the Solar System
+    // ***************************************************************************
+    
+            
+    const amb_light = new THREE.AmbientLight(0xffffff, 1);
+            scene.add(amb_light);
+            const controls = new OrbitControls(camera,renderer.domElement)
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render( scene, camera );
+                
+                sphere.rotation.y += 0.003;
+                cloudmesh.rotation.y += 0.0015;
+                earth_group_rotation.rotation.y += 0.001;
+                earth_group.rotation.y += 0.001;
+                new_group.rotation.y += 0.001;
+                // new_group.rotation.x += 0.001;
+                // new_group.rotation.y += 0.01;
+                // cam_group.rotation.z += 0.01;
+                
+                sun_sphere.rotation.z -= .0001;
+                // sun_circle.rotation.x += .00001;
+                
+                controls.update();
+            }
+            animate();
+        </script>
+        <style>
+            .loginWrapper{
+                z-index: 100;
+                position: relative;
+                left: 300px;
+                top: 300px;
+            }
+            
+        </style>
+        <div class="loginWrapper">
+            <h1 style="color: bisque;">Login</h1>
+            <input type="text" placeholder="Username" name="Username">
+            <input type="text" placeholder="Password" name="Password">
+            <button>Submit</button>
+        </div>
+    </div> <!-- end of div canvas -->
+
 
     <div class="bottom">
         <a class="header-button" href="{% url 'login' %}">Login</a>
         <a class="header-button" href="{% url 'register' %}">Register</a>
         <a class="header-button" href="{% url 'logout' %}">Sign out</a>
         <a class="header-button" href="{% url 'index' %}">Home</a>
-    </div>
+    </div> <!-- bottom -->
 
-</body>
-</html>
+</body> <!-- body -->
+</html> <!-- html -->

@@ -11,15 +11,4 @@ class User(models.Model):
     def __str__ (self):
         return f"id: {self.id}: username: {self.username} password: {self.password} name: {self.name} location: {self.location}"
 
-class Pet(models.Model):
-    name = models.CharField(max_length=64)
-    breed = models.CharField(max_length=64)
-    age = models.CharField(max_length=64)
-    size = models.CharField(max_length=64)
-    image = models.ImageField(upload_to="static/")
-    location = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"Name: {self.name} breed: {self.breed} age: {self.age} size: {self.size} image: {self.image} location: {self.location}"
-    
 

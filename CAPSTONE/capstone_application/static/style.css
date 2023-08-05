@@ -23,7 +23,7 @@ html, body{
 canvas{
     border: 2px solid black;
     background-color: black;
-    border-radius: 30px;
+    /* border-radius: 2px; */
     display: inline-flexbox;
     width: 50%;
 }
@@ -65,7 +65,7 @@ a.header-button{
 .login-box{
     margin: 10%;
     border: solid rgb(135, 135, 135);
-    border-radius: 3.14px;
+    /* border-radius: 3.14px; */
     padding: 5%;
     text-align: center;
 

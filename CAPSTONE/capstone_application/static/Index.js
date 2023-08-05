@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded',function() {
     document.querySelector('div#Saturn.planets').style.display = 'none';
     document.querySelector('div#Uranus.planets').style.display = 'none';
     document.querySelector('div#Neptune.planets').style.display = 'none';
+    document.querySelector('div#Login.planets').style.display = 'none';
+    
         
     let i = 0;
     // select all canvas and give it an id
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded',function() {
     document.getElementById('6').style.display = 'none';
     document.getElementById('7').style.display = 'none';
     document.getElementById('8').style.display = 'none';
-
+    document.getElementById('9').style.display = 'none';
    // Select all buttons
    document.querySelectorAll('button.planets-button').forEach(button => {
 
@@ -81,7 +83,7 @@ function showPage(page) {
 function showCanvas(page){
     let j = 0;
     const list = [0,1,2,3,4,5,6,7,8,9]
-    const planet_arr = ["Home","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"];
+    const planet_arr = ["Home","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune","Login"];
     let index = planet_arr.indexOf(`${page}`, list);
     document.querySelectorAll('canvas').forEach(canvas =>{
         // Hide all the canvas
@@ -92,36 +94,34 @@ function showCanvas(page){
     document.getElementById(`${index}`).style.display = 'block';
 
 }
-//****************************Login/Logout/Home/Register***************************************
-//          Login/Logout/Home/Register
-// // Login
-// function Login(){
-//     // allow people to fill out form to login
-//     console.log("made it to the Login page")
-// }
-// // Sign out
-// function Logout(){
-//     // allow people to sign out from website
-//     console.log("made it to the Sign out page")
-// }
-// // navigate through home page
-// function Home(){
-//     console.log("made it to the Home")
-// }
-// // Register
-// function Register(){
-//     // allow people to fill out form to register
-//     console.log("made it to the Register page")
-// }
-//********************************************************************************************
-//********************************************************************************************
-//          Planets
-//********************************************************************************************
-// Mercury
-function Mercury(){
+function Home(){
+
+    // Send a GET request to the URL
+    fetch('https://api.le-systeme-solaire.net/rest/bodies/{soleil}')
+    // Put response into json form
+    .then(response => response.json())
+    .then(data => {
+        // Log data to the console
+        console.log(data);
+    });
+    document.getElementById('description-Home').innerHTML = data.EnglishName;
+    console.log('home')
     
+};
+
+function Mercury(){
+
+    // Send a GET request to the URL
+    fetch('https://api.le-systeme-solaire.net/rest/bodies/{soleil}')
+    // Put response into json form
+    .then(response => response.json())
+    .then(data => {
+        // Log data to the console
+        console.log(data);
+    });
     document.getElementById('description-mercury').innerHTML = data.EnglishName;
     console.log(data)
+    
 };
 // Venus
 function Venus(){
@@ -157,4 +157,9 @@ function Uranus(){
 function Neptune(){
     // allow people to sign out from website
     console.log("made it to the Neptune page")
+}
+// Login
+function Login(){
+    // allow people to sign out from website
+    console.log("made it to the Login page")
 }
