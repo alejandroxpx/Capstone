@@ -21,7 +21,6 @@
         <button class = "planets-button" data-page="Login">Login</button>
         
     </div> <!--end div top -->
-
     {% block body %}
 
     {% endblock %}
@@ -1575,9 +1574,7 @@
             </script>
         </div> <!-- end of div canvas -->
     </div> <!-- Neptune -->
-    
-
-    
+     
     <div class="planets" id="Login">
     <!-- <h1>Earth Page</h1> -->
     <div id = "canvas">
@@ -1739,19 +1736,27 @@
             .loginWrapper{
                 z-index: 100;
                 position: relative;
-                left: 300px;
-                top: 300px;
+                left: 20%;
+                top: 400px;
+                color: white;
             }
             
         </style>
         <div class="loginWrapper">
-            <h1 style="color: bisque;">Login</h1>
-            <input type="text" placeholder="Username" name="Username">
-            <input type="text" placeholder="Password" name="Password">
-            <button>Submit</button>
+            <form action="{ url 'login'}" method="post">
+                <h1 style="color: white;">Login</h1>
+                <label for="fname">Username</label>
+                <input id = "fname" type="text" placeholder="Username" name="Username"> 
+                <br>
+                <label for="fname">Password</label>
+                <input id = "fname" type="text" placeholder="Password" name="Password">
+                <br>
+                <button>Submit</button>
+            </form>
         </div>
-    </div> <!-- end of div canvas -->
 
+    </div> <!-- end of div canvas -->
+    </div> <!-- Login -->
 
     <div class="bottom">
         <a class="header-button" href="{% url 'login' %}">Login</a>
