@@ -83,7 +83,7 @@ function showPage(page) {
 function showCanvas(page){
     let j = 0;
     const list = [0,1,2,3,4,5,6,7,8,9]
-    const planet_arr = ["Home","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune","Login"];
+    const planet_arr = ["Home","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune","Login","Logout"];
     let index = planet_arr.indexOf(`${page}`, list);
     document.querySelectorAll('canvas').forEach(canvas =>{
         // Hide all the canvas
@@ -126,40 +126,40 @@ function Mercury(){
 // Venus
 function Venus(){
     // allow people to sign out from website
-    console.log("made it to the Mercury page")
+    //console.log("made it to the Mercury page")
 }
 // Earth
 function Earth(){
     // allow people to sign out from website
-    console.log("made it to the Earth page")
+    //console.log("made it to the Earth page")
 }
 // Mars
 function Mars(){
     // allow people to sign out from website
-    console.log("made it to the Mars page")
+    //console.log("made it to the Mars page")
 }
 // Jupiter
 function Jupiter(){
     // allow people to sign out from website
-    console.log("made it to the Jupiter page")
+    //console.log("made it to the Jupiter page")
 }
 // Saturn
 function Saturn(){
     // allow people to sign out from website
-    console.log("made it to the Saturn page")
+    //console.log("made it to the Saturn page")
 }
 // Uranus
 function Uranus(){
     // allow people to sign out from website
-    console.log("made it to the Uranus page")
+    //console.log("made it to the Uranus page")
 }
 // Neptune
 function Neptune(){
     // allow people to sign out from website
-    console.log("made it to the Neptune page")
+    //console.log("made it to the Neptune page")
 }
 // Login
 function Login(){
     // allow people to sign out from website
-    console.log("made it to the Login page")
+    //console.log("made it to the Login page")
 }

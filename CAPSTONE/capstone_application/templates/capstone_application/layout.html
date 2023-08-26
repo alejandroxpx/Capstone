@@ -19,10 +19,11 @@
         <button class = "planets-button" data-page="Uranus">Uranus</button>
         <button class = "planets-button" data-page="Neptune">Neptune</button>
         <button class = "planets-button" data-page="Login">Login</button>
+        <button class = "planets-button" data-page="Login">Logout</button>
         
     </div> <!--end div top -->
     {% block body %}
-
+    <p>APP CREATED BY ALEJANDRO PASILLAS</p>
     {% endblock %}
 
     <div id = "header">
@@ -1758,6 +1759,10 @@
     </div> <!-- end of div canvas -->
     </div> <!-- Login -->
 
+    <div class="planets" id="Logout">
+
+
+    </div> <!-- Logout -->
     <div class="bottom">
         <a class="header-button" href="{% url 'login' %}">Login</a>
         <a class="header-button" href="{% url 'register' %}">Register</a>

@@ -14,31 +14,33 @@ def index(request):
 
     # display most recent post in cover page with sliding affect 
 
-    return render(request, "capstone_application/index.html")
+    #return render(request, "capstone_application/index.html")
 
 def login_view(request):
     if request.method == "POST":
     #     # Get username
-        username = request.POST["username"]
+        username = request.POST.get("username")
     #     # Get password
-        password = request.POST["password"]
+        password = request.POST.get("password")
 
         user = authenticate(request, username=username, password= password)
         
         # If user object is returned, log in and route to index page:
         if user:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return render(request, "capstone_application/user.html", {
+                "message": "User was found!"
+            })
         # Otherwise, return login page again with new context
         else:
-            return render(request, "users/login.html", {
-                "message": "Invalid Credentials"
+            return render(request, "capstone_application/login.html", {
+                "message": "User was NOT found!"
             })
     return render(request, "capstone_application/login.html")
 
 def logout_view(request):
     logout(request)
-    return render(request, "users/login.html", {
+    return render(request, "capstone_application/login.html", {
                 "message": "Logged Out"
             })
 
