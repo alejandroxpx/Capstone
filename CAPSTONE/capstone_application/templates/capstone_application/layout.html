@@ -29,7 +29,6 @@
         <!-- <h1 class="title">Solar System</h1> -->
     </div> <!-- Header -->
 
-
     <div class="planets" id="Home">
         <!-- <h1>Home Page</h1> -->
             <script src="https://threejs.org/build/three.js"></script>
@@ -1743,7 +1742,8 @@
             
         </style>
         <div class="loginWrapper">
-            <form action="{ url 'login'}" method="post">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
                 <h1 style="color: white;">Login</h1>
                 <label for="fname">Username</label>
                 <input id = "fname" type="text" placeholder="Username" name="Username"> 

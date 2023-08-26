@@ -2,9 +2,12 @@
 
 {% block body %}
     {% if message %}
-    <div>{{message}}</div>
+    <div>{{message}}
+        <p>ad astra</p>
+    </div>
     {% endif %}
-<div id="login-box" class="login-box"> 
+    <h1>HELLO YOU LOGGED IN!</h1>
+<!-- <div id="login-box" class="login-box"> 
     <h1>Login</h1>
 
     <form action="{% url 'login' %}" method="post">
@@ -13,5 +16,5 @@
         <input type="password", name="password", placeholder="password"><br><br>
         <input type="submit", value="Submit">
     </form>
-</div>
+</div> -->
 {% endblock%}
