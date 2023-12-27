@@ -10,39 +10,40 @@ def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     return render(request, "capstone_application/index.html")
-    # Optional: Display globe of world as a heat map of lost pets/ homeless pets
-
-    # display most recent post in cover page with sliding affect 
-
-    #return render(request, "capstone_application/index.html")
+   
 
 def login_view(request):
     if request.method == "POST":
     #     # Get username
-        username = request.POST.get("username")
+        # username = request.POST.get("username")
     #     # Get password
+        # password = request.POST.get("password")
+        username = request.POST.get("username")
         password = request.POST.get("password")
 
-        user = authenticate(request, username=username, password= password)
+        user = authenticate(request, username=username, password=password)
         
         # If user object is returned, log in and route to index page:
         if user:
             login(request, user)
-            return render(request, "capstone_application/user.html", {
-                "message": "User was found!"
+            return HttpResponseRedirect(reverse("index"), {
+                "message": "User was found!",
+                "flag":"1"
             })
         # Otherwise, return login page again with new context
         else:
             return render(request, "capstone_application/login.html", {
-                "message": "User was NOT found!"
+                "message": "User was NOT found!",
+                "flag":"0"
             })
     return render(request, "capstone_application/login.html")
 
 def logout_view(request):
-    logout(request)
-    return render(request, "capstone_application/login.html", {
-                "message": "Logged Out"
-            })
+     logout(request)
+     return render(request, "capstone_application/login.html", {
+                 "message": "Logged Out"
+             })
+    #pass
 
 def register(request):
     # Get username

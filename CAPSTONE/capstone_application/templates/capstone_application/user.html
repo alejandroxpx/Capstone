@@ -1,10 +1,10 @@
 {% extends "capstone_application/layout.html" %}
 
 {% block body %}
-<h1>Welcome, {{ request.user.first_name }}</h1>
+
+<h1>Welcome, {{ request.user.name }}</h1>
 <ul>
-    <li>Username: {{ request.user.username }}</li>
-    <li>Email: {{ request.user.email }}</li>
+    <li>username: {{ request.user.username }}</li>
 </ul>
 
 <a href="{% url 'logout' %}">Log Out</a>
